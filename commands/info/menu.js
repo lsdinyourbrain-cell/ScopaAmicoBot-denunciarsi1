@@ -47,37 +47,40 @@ ${alLines}
 ┃
 ┣━━ 💝 𝐅𝐚𝐦𝐢𝐠𝐥𝐢𝐚
 ┃ ╰ .famiglia [sposa/adotta/caccia/divorzia/abbandona]
-┣━━ 🪙 𝐄𝐜𝐨𝐧𝐨𝐦𝐢𝐚 💰
-┃ ├ .cassaforte .scava .casino€ .dadi€ .slot .roulette€
-┃ ├ .sasso .top🏆 .ricchi💎
+┣━━ 🪙 𝐄𝐜𝐨𝐧𝐨𝐦𝐢𝐚
+┃ ├ .cassaforte💰 .scava⛏ .casino€ .dadi€ .slot🎰
+┃ ├ .roulette€ .sasso .top🏆 .ricchi💎
 ┣━━ 🎲 𝐒𝐨𝐜𝐢𝐚𝐥
 ┃ ├ .ship .gay .simpatometro .percentuale .scelta .fiore
-┃ ├ .personaggio .anime .assemblapc .verita .obbligo .oroscopo .maranza
+┃ ├ .personaggio .anime .assemblapc .verita .obbligo
+┃ ├ .oroscopo .maranza💪
 ┣━━ 🔥 𝐈𝐧𝐭𝐞𝐫𝐚𝐳𝐢𝐨𝐧𝐢
-┃ ├ .schiaffo .bacia .abbraccia .sposa .pacca .uccidi .insulta
-┃ ├ .incinta .scopa .sborra/ditalino/sega .tette .meme .rissa
-┃ ├ .cazzo .sclero .drink .scusa .palo .gossip
+┃ ├ .schiaffo .bacia .abbraccia .sposa .paccasulculo
+┃ ├ .uccidi .insulta .scopa .sborra .ditalino .sega
+┃ ├ .incinta .tette🍒 .meme🎵 .rissa🥊 .cazzo🍆
+┃ ├ .sclero💢 .drink🍹 .scusa .palo🥀 .gossip🗣
 ┣━━ 🛠️ 𝐔𝐭𝐢𝐥𝐢𝐭𝐲
-┃ ├ .ping .groupinfo .weather .sticker .s .vv .hack
-┃ ├ .clona .tts .chipmunk .rubato .lyrics
+┃ ├ .ping⚡ .groupinfo🏷 .weather🌦 .sticker/.s🖼
+┃ ├ .vv👁 .hack💻 .clona🪞 .tts🔊 .chipmunk🐿
+┃ ├ .rubato🖼 .lyrics🎤
 ┣━━ 🎤 𝐀𝐮𝐝𝐢𝐨 🔊
 ┃ ├ .deep .reverse .echo .robot .drunk .bass
 ┃ ├ .nightcore .8d
 ┣━━ 📥 𝐌𝐞𝐝𝐢𝐚
-┃ ├ .ig .wasted .pokedex .clown
+┃ ├ .ig📸 .wasted💀 .pokedex📋 .clown🤡
 ┣━━ 🤖 𝐀𝐈 🧠
 ┃ ╰ .ai [domanda]
 ┣━━ 🎮 𝐆𝐢𝐨𝐜𝐡𝐢 🎯
 ┃ ╰ .tris @
 ┣━━ ⚙️ 𝐀𝐝𝐦𝐢𝐧
 ┃ ├ .tag .tagall .chiudi/apri .ban .link .del
-┃ ├ .mute/unmute .warn .promote .demote
+┃ ├ .mute/unmute .warn .promote/demote
 ${antilinkSection}`;
 
             if (isOwner) {
                 menuTxt +=
 `┃
-┣━━ 👨‍💻 𝐎𝐰𝐧𝐞𝐫
+┣━━ 🛡 𝐎𝐰𝐧𝐞𝐫
 ┃ ├ .spegni .accendi .riavvia
 ┃ ├ .welcome on/off .goodbye on/off`;
             }
