@@ -46,31 +46,82 @@ module.exports = {
 ┃  ╰ .famiglia [sposa/adotta/caccia/divorzia/abbandona]
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🪙 𝔼𝕔𝕠𝕟𝕠𝕞𝕚𝕒
-┃  ├ .cassaforte💰 .scava⛏ .casino€ .dadi€ .slot🎰
-┃  ├ .roulette€ .sasso .top🏆 .ricchi💎
+┃  ├ .cassaforte
+┃  ├ .scava
+┃  ├ .casino [€]
+┃  ├ .dadi [€]
+┃  ├ .slot
+┃  ├ .roulette [€]
+┃  ├ .sasso / .carta / .forbici
+┃  ├ .top
+┃  ╰ .ricchi
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🎲 𝕊𝕠𝕔𝕚𝕒𝕝
-┃  ├ .ship .gay .simpatometro .percentuale .scelta .fiore
-┃  ├ .personaggio .anime .assemblapc .verita .obbligo
-┃  ├ .oroscopo .maranza💪
+┃  ├ .ship
+┃  ├ .gay
+┃  ├ .simpatometro
+┃  ├ .percentuale
+┃  ├ .scelta
+┃  ├ .fiore
+┃  ├ .personaggio
+┃  ├ .anime
+┃  ├ .assemblapc
+┃  ├ .verita
+┃  ├ .obbligo
+┃  ├ .oroscopo
+┃  ╰ .maranza
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🔥 𝕀𝕟𝕥𝕖𝕣𝕒𝕫𝕚𝕠𝕟𝕚
-┃  ├ .schiaffo .bacia .abbraccia .sposa .paccasulculo
-┃  ├ .uccidi .insulta .scopa .sborra .ditalino .sega
-┃  ├ .incinta .tette🍒 .meme🎵 .rissa🥊 .cazzo🍆
-┃  ├ .sclero💢 .drink🍹 .scusa .palo🥀 .gossip🗣
+┃  ├ .schiaffo
+┃  ├ .bacia
+┃  ├ .abbraccia
+┃  ├ .sposa
+┃  ├ .paccasulculo
+┃  ├ .uccidi
+┃  ├ .insulta
+┃  ├ .scopa
+┃  ├ .sborra
+┃  ├ .ditalino
+┃  ├ .sega
+┃  ├ .incinta
+┃  ├ .tette
+┃  ├ .meme
+┃  ├ .rissa
+┃  ├ .cazzo
+┃  ├ .sclero
+┃  ├ .drink
+┃  ├ .scusa
+┃  ├ .palo
+┃  ╰ .gossip
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🛠️ 𝕌𝕥𝕚𝕝𝕚𝕥𝕪
-┃  ├ .ping⚡ .groupinfo🏷 .weather🌦 .sticker/.s🖼
-┃  ├ .vv👁 .hack💻 .clona🪞 .tts🔊 .chipmunk🐿
-┃  ├ .rubato🖼 .lyrics🎤
+┃  ├ .ping
+┃  ├ .groupinfo
+┃  ├ .weather [città]
+┃  ├ .sticker / .s
+┃  ├ .vv
+┃  ├ .hack
+┃  ├ .clona
+┃  ├ .tts [testo]
+┃  ├ .chipmunk
+┃  ├ .rubato
+┃  ╰ .lyrics
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🎤 𝔄𝔲𝔡𝔦𝔬
-┃  ├ .deep .reverse .echo .robot .drunk .bass
-┃  ├ .nightcore .8d
+┃  ├ .deep
+┃  ├ .reverse
+┃  ├ .echo
+┃  ├ .robot
+┃  ├ .drunk
+┃  ├ .bass
+┃  ├ .nightcore
+┃  ╰ .8d
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  📥 𝕄𝕖𝕕𝕚𝕒
-┃  ├ .ig📸 .wasted💀 .pokedex📋 .clown🤡
+┃  ├ .ig
+┃  ├ .wasted
+┃  ├ .pokedex
+┃  ╰ .clown
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🤖 𝔸𝕀
 ┃  ╰ .ai [domanda] 🧠
@@ -79,16 +130,26 @@ module.exports = {
 ┃  ╰ .tris @ 🎯
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  ⚙️ 𝔄𝔡𝔪𝔦𝔫
-┃  ├ .tag .tagall .chiudi/apri .ban .link .del
-┃  ├ .mute/unmute .warn .promote/demote
+┃  ├ .tag
+┃  ├ .tagall
+┃  ├ .chiudi / .apri
+┃  ├ .ban
+┃  ├ .link
+┃  ├ .del
+┃  ├ .mute / .unmute
+┃  ├ .warn
+┃  ├ .promote / .demote
 ${antilinkSection}`;
 
             if (isOwner) {
                 menuTxt +=
 `┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🛡 𝔒𝔴𝔫𝔢𝔯
-┃  ├ .spegni .accendi .riavvia
-┃  ╰ .welcome on/off .goodbye on/off`;
+┃  ├ .spegni
+┃  ├ .accendi
+┃  ├ .riavvia
+┃  ├ .welcome on/off
+┃  ╰ .goodbye on/off`;
             }
 
             menuTxt +=
