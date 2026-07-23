@@ -1,0 +1,30 @@
+{
+  "123@g.us": {
+    "welcome": true,
+    "goodbye": false
+  },
+  "120363406239282439@g.us": {
+    "welcome": false,
+    "goodbye": false
+  },
+  "120363408709424785@g.us": {
+    "welcome": true,
+    "goodbye": true
+  },
+  "120363428081902503@g.us": {
+    "welcome": true,
+    "goodbye": true
+  },
+  "120363407957209998@g.us": {
+    "welcome": true,
+    "goodbye": true
+  },
+  "120363406232771322@g.us": {
+    "welcome": true,
+    "goodbye": true
+  },
+  "120363402126689019@g.us": {
+    "welcome": true,
+    "goodbye": true
+  }
+}

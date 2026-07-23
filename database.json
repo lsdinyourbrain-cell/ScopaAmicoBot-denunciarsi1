@@ -1,0 +1,3561 @@
+{
+  "269956662956146@lid": {
+    "money": 38,
+    "warnings": 0,
+    "isMuted": false,
+    "spouse": "111201753284770@lid",
+    "children": [
+      "243731491983511@lid"
+    ],
+    "parents": [],
+    "inventory": []
+  },
+  "111201753284770@lid": {
+    "money": 100,
+    "warnings": 0,
+    "isMuted": false,
+    "spouse": "269956662956146@lid",
+    "children": [],
+    "parents": [],
+    "inventory": []
+  },
+  "145935220928577@lid": {
+    "money": 100,
+    "warnings": 0,
+    "isMuted": false,
+    "spouse": null,
+    "children": [],
+    "parents": [],
+    "inventory": [],
+    "145935220928577@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "243731491983511@lid": {
+    "money": 100,
+    "warnings": 0,
+    "isMuted": false,
+    "spouse": null,
+    "children": [],
+    "parents": [
+      "269956662956146@lid"
+    ],
+    "inventory": [],
+    "243731491983511@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "120363407957209998@g.us": {
+    "145935220928577@lid": {
+      "money": 8,
+      "warnings": 0,
+      "isMuted": false,
+      "spouse": "202465462997099@lid",
+      "children": [],
+      "parents": [],
+      "inventory": [],
+      "msgCount": 369
+    },
+    "269956662956146@lid": {
+      "money": 329,
+      "warnings": 0,
+      "isMuted": false,
+      "spouse": "115032864063722@lid",
+      "children": [
+        "243731491983511@lid"
+      ],
+      "parents": [],
+      "inventory": [],
+      "msgCount": 1404
+    },
+    "202465462997099@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1468,
+      "spouse": "145935220928577@lid",
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "164862353272937@lid": {
+      "money": 200,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 77,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "255160500666392@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 205,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "243731491983511@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 669,
+      "spouse": null,
+      "children": [],
+      "parents": [
+        "269956662956146@lid"
+      ],
+      "inventory": []
+    },
+    "216939485991114@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 157,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "115032864063722@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 140,
+      "spouse": "269956662956146@lid",
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "268307395567731@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 7,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "109740810068061@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 13,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "260365531267190@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 189,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "73671825731677@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 102,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "203654665633921@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "176154174562543@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 54,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "81613639708750@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 66,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "18348838502548@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 70,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "164574607229051@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 40,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "81055293902979@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 292,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "203002367459431@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 24,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "108298321830065@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 294,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "107232549179459@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "26478624387246@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "12082481209508@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 41,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "278374580809863@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 77,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "157281954095117@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 6,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "224945204379723@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "27208701739198@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "205725225767043@lid": {
+      "money": 170,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 151,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "129193320960048@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 20,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "96636780941342@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 14,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "120363428081902503@g.us": {
+    "269956662956146@lid": {
+      "money": 23,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 114,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "172885335388297@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 33,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "tris": {
+      "board": [
+        "❌",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "⭕"
+      ],
+      "players": [
+        "269956662956146@lid",
+        "172885335388297@lid"
+      ],
+      "turn": 2,
+      "active": true,
+      "gameMessageKey": {
+        "remoteJid": "120363428081902503@g.us",
+        "fromMe": true,
+        "id": "3EB030296F048C5FBACD5C"
+      }
+    },
+    "91114157654082@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 6,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "120363406239282439@g.us": {
+    "7786876407917@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 355,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "269956662956146@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 126,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "157217277894813@lid": {
+      "money": 175,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 17,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "157110037963003@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 74,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "161319424630927@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "125447555801296@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "151668230496442@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "80556540846327@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "65055903219937@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 138,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "114886147317775@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 255,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "47653081600122@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 17,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "239955561431172@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 14,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "159420847812833@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 15,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "157449944350885@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 87,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "159918862647531@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 216,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "168427226398835@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 52,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "145935220928577@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 71,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "66920757882899@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 16,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "272502873931968@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 354,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "88785714978870@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 46,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "90190219591773@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 33,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "245560980304067@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 25,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "279220588699699@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "27715608567867@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "132126196408338@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 30,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "98286149066785@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "47755758202919@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "171292087050407@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "248558414512185@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "266279416025170@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "78688112652335@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "246329410322648@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "124532929110098@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "104187971002479@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "185083529044004@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "147807054872752@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "15178632552623@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "102332075405531@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "255627947413625@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 10,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "261280191504415@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "184189806759951@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "258299450634369@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "32470103793919@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "154786648312@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 124,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "176042253762653@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "230756311900291@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 29,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "248622872576130@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "6477532111023@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 27,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "206351703773255@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "175711507718305@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "16355235520644@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "190146943144165@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "127488185368642@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "120363406232771322@g.us": {
+    "172885335388297@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 73,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "243340046037119@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 59,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "119593532174391@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "253978780635196@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 58,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "65760261087473@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 137,
+      "spouse": null,
+      "children": [
+        "102177389469823@lid"
+      ],
+      "parents": [],
+      "inventory": []
+    },
+    "120929233457315@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 17,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "102177389469823@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 22,
+      "spouse": null,
+      "children": [],
+      "parents": [
+        "65760261087473@lid"
+      ],
+      "inventory": []
+    }
+  },
+  "120363402126689019@g.us": {
+    "172885335388297@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 94,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "261409241874564@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 63,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "13116947624119@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 41,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "215736408666178@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 243,
+      "spouse": null,
+      "children": [],
+      "parents": [
+        "201773318934721@lid"
+      ],
+      "inventory": []
+    },
+    "236743093702784@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 332,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "161477919023357@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 98,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "41618333761577@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "178838512398357@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 18,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "249803955036299@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 399,
+      "spouse": null,
+      "children": [],
+      "parents": [
+        "201773318934721@lid"
+      ],
+      "inventory": []
+    },
+    "171764449558540@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 69,
+      "spouse": "201773318934721@lid",
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "201773318934721@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 53,
+      "spouse": "171764449558540@lid",
+      "children": [
+        "215736408666178@lid",
+        "249803955036299@lid"
+      ],
+      "parents": [],
+      "inventory": []
+    },
+    "198629654552703@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 21,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "279555579314411@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 31,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "74307262779569@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 22,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "269956662956146@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 28,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "96396548022318@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "146407013007428@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "120363427891023132@g.us": {
+    "145935220928577@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 94,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "267328210079799@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 33,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "81613639708750@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 42,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "115032864063722@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 13,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "176781256605902@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 15,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "214083466973381@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 68,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "255160500666392@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 12,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "6150493835516@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "122832424022137@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 109,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "203002367459431@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "61302219251845@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "77885759049734@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 6,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "106794697371769@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "170463661654094@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 21,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "277146455003333@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "124966670463218@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "276583025791181@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "122982613655602@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "260988855173121@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "268152692818010@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "105781018009699@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 6,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "17845991788706@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 7,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "138109102624815@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "190091192496185@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "228457900449864@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "242871911325857@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "176154174562543@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 6,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "47107704660053@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "198728254251191@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "81055293902979@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "95198604468416@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "120363425267275823@g.us": {
+    "77885759049734@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 165,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "115032864063722@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 157,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "129193320960048@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 25,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "269956662956146@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 108,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "234101722341562@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 178,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "145935220928577@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 53,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "12082481209508@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 72,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "255160500666392@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "260365531267190@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 73,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "214083466973381@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 55,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "81055293902979@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 193,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "243731491983511@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 15,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "154632429023242@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 6,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "247639610232937@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 35,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "128312500301829@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 10,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "11222816702512@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 35,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "24331711189031@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 58,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "227010714537989@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 26,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "234947679899862@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "260988855173121@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 11,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "133956372582591@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "176154174562543@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 22,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "47107704660053@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "203002367459431@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 35,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "277146455003333@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 13,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "199299652657243@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "159918862647531@lid": {
+    "159918862647531@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "114886147317775@lid": {
+    "114886147317775@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "249803955036299@lid": {
+    "249803955036299@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "224945204379723@lid": {
+    "224945204379723@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "120363408709424785@g.us": {
+    "145935220928577@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 222,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "276583025791181@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 25,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "105781018009699@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 106,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "269956662956146@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 56,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "181466831048887@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "264918129442938@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 7,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "45531132891142@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 26,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "198487786450986@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "198728254251191@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "251187186106481@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "268018894512279@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 69,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "239590455677069@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "95198604468416@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 25,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "239110191071468@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 15,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "214083466973381@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 194,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "190091192496185@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 87,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "106794697371769@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "29073120178259@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "13765571555420@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 9,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "17845991788706@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 188,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "272005228183562@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 23,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "119894129516787@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 6,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "129171309248748@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "256242748502196@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 34,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "236232294572103@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 25,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "34192754786346@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 52,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "217416244178947@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 7,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "129296450465801@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 66,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "81613639708750@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 142,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "207644690268262@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "228457900449864@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 78,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "81055293902979@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 82,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "127711087456478@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "61302219251845@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 118,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "23828545708115@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 105,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "65635992232060@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "113090884563012@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 50,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "277146455003333@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "60791470473348@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "230760741097526@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "194558075891881@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "107988413100278@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "98870264652015@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "272146324521078@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "13705743962213@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "152501420617812@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "234006998155378@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "20594502414496@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "13074199265382@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "199888029638736@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 54,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "40927229956169@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 40,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "51127911501865@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "262556333678619@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "175264747270312@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "244667778105460@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "15440961081532@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "189048001937526@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "248700265885861@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "69441685577808@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "214095580110881@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "106811675955332@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "44698311897113@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "29322094055630@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "21573721407541@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "169544303804599@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "205144851509353@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 52,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "172936958873773@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "37860254195826@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "277180076548346@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "195816585211904@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "173319227707428@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "30086346633458@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "118128914727087@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "11605555294303@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "238427022852341@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "208345139020014@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "7486614536371@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "49495404474375@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "152561751466235@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "141978884948083@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 132,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "8650164842748@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "154923798929465@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 25,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "3552424554733@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "92802029469855@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "29627422654714@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "58957133533307@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "204290220122191@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "111626216837330@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 9,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "139187122659478@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 6,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "149877849850098@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "58214003548331@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 6,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "172670939320342@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "78547083386992@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "67371242885279@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "111562379534512@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "276549135798438@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 20,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "251852687970430@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "217802287906913@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 22,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "216977855500484@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 18,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "110922228097154@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 67,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "252097501122789@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "143925041979476@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "38758103662797@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 23,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "148803487297538@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 15,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "140845114200106@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "271515752869987@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 14,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "49078792650814@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 15,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "180500345921635@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 7,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "114499549970557@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 43,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "260214922158113@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "226534510059539@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "230051350085730@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 75,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "141626764689601@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "78035428602080@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "42082207023121@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 10,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "214319522394119@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 7,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "31258872688840@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "176781256605902@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "85207940100331@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "227594729472111@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "202628034220085@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 77,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "140308713087011@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "68053773594857@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 13,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "236387198611537@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "13924854407309@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "41158755528710@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "176390079013013@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "61599125614653@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 25,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "39497072934935@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "202744434556937@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "78198603796572@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "125232656429223@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 11,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "242468519956484@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "237528904941820@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "22256570876107@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 9,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "208371043029240@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 7,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "180608173097168@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "200643843227648@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "195657906307140@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 5,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "212588147273849@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 11,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "259111283388446@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 7,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "240827976663066@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "99651864801427@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "174096801378445@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "90632483766419@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "24331711189031@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "169114370850986@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "26577878446308@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "122982613655602@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "110557373947914@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "121496622108911@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 4,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "32061981221062@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "101120961728560@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 90,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "108298321830065@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "156689030459492@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "6331452932148@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "146780826128559@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 8,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "106038816694508@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "6159620690047@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "197513365704859@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 3,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "44362801107087@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 2,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "156921495584779@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    },
+    "39853018349685@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 1,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "105781018009699@lid": {
+    "105781018009699@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "67371242885279@lid": {
+    "67371242885279@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "7486614536371@lid": {
+    "7486614536371@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "68053773594857@lid": {
+    "68053773594857@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "110922228097154@lid": {
+    "110922228097154@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "190091192496185@lid": {
+    "190091192496185@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "58214003548331@lid": {
+    "58214003548331@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  },
+  "146780826128559@lid": {
+    "146780826128559@lid": {
+      "money": 100,
+      "warnings": 0,
+      "isMuted": false,
+      "msgCount": 0,
+      "spouse": null,
+      "children": [],
+      "parents": [],
+      "inventory": []
+    }
+  }
+}

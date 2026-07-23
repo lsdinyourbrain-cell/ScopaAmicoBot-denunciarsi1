@@ -1,0 +1,1143 @@
+'use strict';
+
+const {
+    default: makeWASocket,
+    useMultiFileAuthState,
+    DisconnectReason,
+    downloadMediaMessage,
+    downloadContentFromMessage,
+} = require('@whiskeysockets/baileys');
+
+const sharp = require('sharp');
+const ffmpeg = require('fluent-ffmpeg');
+const ffmpegPath = require('ffmpeg-static');
+ffmpeg.setFfmpegPath(ffmpegPath);
+const webpmux = require('node-webpmux');
+const qrcode  = require('qrcode-terminal');
+const pino    = require('pino');
+const fs      = require('fs');
+const path    = require('path');
+const axios   = require('axios');
+const { execFile } = require('child_process');
+const { promisify } = require('util');
+const os      = require('os');
+const crypto  = require('crypto');
+const { loadCommands } = require('./commandLoader');
+
+const execFileAsync = promisify(execFile);
+const ownerNumber = "269956662956146@lid";
+let isBotActive = true;
+let botStartTime = Math.floor(Date.now() / 1000); // Unix timestamp when bot connected
+
+const COMMANDS_DIRECTORY = path.join(__dirname, 'commands');
+const loadCommandRegistry = () => {
+    // loadCommands percorre ricorsivamente commands/ e tutte le sottocartelle.
+    const registry = loadCommands(COMMANDS_DIRECTORY);
+    console.log(`[COMMANDS] Caricati ${registry.files.length} moduli (${registry.commands.size} nomi/alias).`);
+    return registry;
+};
+const { commands } = loadCommandRegistry();
+
+// ============================================================================
+//  COSTANTI GLOBALI — AI, DOWNLOAD, TTS
+// ============================================================================
+const AI_API_KEY   = 'INSERISCI_QUI_LA_TUA_API_KEY'; // OpenAI / Gemini
+const AI_API_URL   = 'https://api.openai.com/v1/chat/completions';
+const AI_MODEL     = 'gpt-3.5-turbo';
+const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50 MB — limite WhatsApp
+// ============================================================================
+
+const DB_FILE = path.join(__dirname, 'database.json');
+let db = {};
+let _saveTimer = null;
+
+const loadDB = () => {
+    if (fs.existsSync(DB_FILE)) {
+        try {
+            db = JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
+        } catch (e) {
+            console.error('[DB] Errore lettura database, ripristino vuoto.', e.message);
+            db = {};
+        }
+    }
+};
+
+const saveDB = () => {
+    if (_saveTimer) clearTimeout(_saveTimer);
+    _saveTimer = setTimeout(() => {
+        fs.writeFile(DB_FILE, JSON.stringify(db, null, 2), 'utf-8', (err) => {
+            if (err) console.error('[DB] Errore salvataggio:', err.message);
+        });
+    }, 500);
+};
+
+const getUser = (jid, chatId) => {
+    if (!db[chatId]) db[chatId] = {};
+    if (!db[chatId][jid]) {
+        db[chatId][jid] = {
+            money    : 100,
+            warnings : 0,
+            isMuted  : false,
+            msgCount : 0,
+            spouse   : null,
+            children : [],
+            parents  : [],
+            inventory: [],
+        };
+        saveDB();
+    }
+    const user = db[chatId][jid];
+    user.money = Number.isFinite(user.money) ? user.money : 100;
+    user.warnings = Number.isFinite(user.warnings) ? user.warnings : 0;
+    user.isMuted = Boolean(user.isMuted);
+    user.msgCount = Number.isFinite(user.msgCount) ? user.msgCount : 0;
+    user.spouse ??= null;
+    user.children = Array.isArray(user.children) ? user.children : [];
+    user.parents = Array.isArray(user.parents) ? user.parents : [];
+    user.inventory = Array.isArray(user.inventory) ? user.inventory : [];
+    return user;
+};
+
+loadDB();
+
+// ============================================================================
+//  ANTILINK — PERSISTENZA PER-GRUPPO
+// ============================================================================
+//
+//  Struttura del file antilink.json:
+//  {
+//    "123456789@g.us": {              ← remoteJid del gruppo
+//      "whatsapp":  true,             ← true = filtro attivo
+//      "instagram": false,
+//      "telegram":  false,
+//      "tiktok":    false,
+//      "facebook":  false,
+//      "youtube":   false,
+//      "twitter":   false,
+//      "altri":     false             ← qualsiasi altro URL (http/https)
+//    },
+//    "987654321@g.us": { ... }        ← ogni gruppo è indipendente
+//  }
+//
+//  La chiave primaria è sempre il remoteJid del gruppo, NON il sender.
+//  Se un gruppo non è mai stato configurato, viene inizializzato on-demand
+//  con tutti i filtri a false (nessun blocco) al primo .antilink.
+// ============================================================================
+
+const ANTILINK_FILE = path.join(__dirname, 'antilink.json');
+
+/**
+ * Piattaforme supportate con le relative regex di rilevamento.
+ * L'ordine conta: "altri" deve essere l'ultimo (catch-all).
+ */
+const ANTILINK_PLATFORMS = {
+    whatsapp : /chat\.whatsapp\.com/i,
+    instagram: /instagram\.com|instagr\.am/i,
+    telegram : /t\.me|telegram\.me|telegram\.org/i,
+    tiktok   : /tiktok\.com|vm\.tiktok\.com/i,
+    facebook : /facebook\.com|fb\.com|fb\.me|fb\.gg/i,
+    youtube  : /youtube\.com|youtu\.be/i,
+    twitter  : /twitter\.com|x\.com|t\.co/i,
+    altri    : /https?:\/\//i,
+};
+
+/**
+ * Struttura di default per un gruppo non ancora configurato.
+ * Tutti i filtri partono da false (permissivo).
+ */
+const DEFAULT_ANTILINK_GROUP = () =>
+    Object.fromEntries(Object.keys(ANTILINK_PLATFORMS).map(k => [k, false]));
+
+/**
+ * Legge antilink.json da disco in modo sicuro.
+ * Se il file non esiste o è corrotto, restituisce un oggetto vuoto.
+ * @returns {{ [groupJid: string]: { [platform: string]: boolean } }}
+ */
+const loadAntilink = () => {
+    try {
+        if (!fs.existsSync(ANTILINK_FILE)) return {};
+        return JSON.parse(fs.readFileSync(ANTILINK_FILE, 'utf-8'));
+    } catch (e) {
+        console.error('[ANTILINK] Errore lettura file, ripristino vuoto.', e.message);
+        return {};
+    }
+};
+
+/**
+ * Scrive l'intero oggetto antilink su disco in modo sincrono.
+ * Sincrono deliberatamente per evitare race condition:
+ * due comandi .antilink ravvicinati potrebbero altrimenti
+ * sovrascriversi a vicenda con writeFile asincrono.
+ * @param {{ [groupJid: string]: { [platform: string]: boolean } }} data
+ */
+const saveAntilink = (data) => {
+    try {
+        fs.writeFileSync(ANTILINK_FILE, JSON.stringify(data, null, 2), 'utf-8');
+    } catch (e) {
+        console.error('[ANTILINK] Errore salvataggio:', e.message);
+    }
+};
+
+/**
+ * Restituisce la configurazione antilink per un gruppo specifico.
+ * Se il gruppo non è mai stato configurato, lo inizializza con i default
+ * e salva subito su disco, così il file è sempre aggiornato.
+ * @param {string} groupJid - remoteJid del gruppo (es. "123@g.us")
+ * @returns {{ [platform: string]: boolean }}
+ */
+const getAntilinkGroup = (groupJid) => {
+    const data = loadAntilink();
+    if (!data[groupJid]) {
+        // Prima volta che vediamo questo gruppo: inizializzazione automatica
+        data[groupJid] = DEFAULT_ANTILINK_GROUP();
+        saveAntilink(data);
+        console.log(`[ANTILINK] Gruppo ${groupJid} inizializzato con filtri di default.`);
+    }
+    return data[groupJid];
+};
+
+/**
+ * Imposta lo stato di una piattaforma per un gruppo specifico e salva.
+ * @param {string} groupJid  - remoteJid del gruppo
+ * @param {string} platform  - chiave piattaforma (es. "instagram")
+ * @param {boolean} enabled  - true = blocca, false = permetti
+ */
+const setAntilinkPlatform = (groupJid, platform, enabled) => {
+    const data = loadAntilink();
+    if (!data[groupJid]) data[groupJid] = DEFAULT_ANTILINK_GROUP();
+    data[groupJid][platform] = enabled;
+    saveAntilink(data);
+};
+
+// ============================================================================
+//  WELCOME / GOODBYE — PERSISTENZA PER-GRUPPO
+// ============================================================================
+//  Struttura welcome.json:
+//  {
+//    "123456789@g.us": {
+//      "welcome": true,   // messaggio di benvenuto attivo
+//      "goodbye": true    // messaggio di arrivederci attivo
+//    }
+//  }
+// ============================================================================
+
+const WELCOME_FILE = path.join(__dirname, 'welcome.json');
+
+const DEFAULT_WELCOME_GROUP = () => ({
+    welcome: true,
+    goodbye: true,
+});
+
+const loadWelcome = () => {
+    try {
+        if (!fs.existsSync(WELCOME_FILE)) return {};
+        return JSON.parse(fs.readFileSync(WELCOME_FILE, 'utf-8'));
+    } catch (e) {
+        console.error('[WELCOME] Errore lettura file, ripristino vuoto.', e.message);
+        return {};
+    }
+};
+
+const saveWelcome = (data) => {
+    try {
+        fs.writeFileSync(WELCOME_FILE, JSON.stringify(data, null, 2), 'utf-8');
+    } catch (e) {
+        console.error('[WELCOME] Errore salvataggio:', e.message);
+    }
+};
+
+const getWelcomeGroup = (groupJid) => {
+    const data = loadWelcome();
+    if (!data[groupJid]) {
+        data[groupJid] = DEFAULT_WELCOME_GROUP();
+        saveWelcome(data);
+        console.log(`[WELCOME] Gruppo ${groupJid} inizializzato con default.`);
+    }
+    return data[groupJid];
+};
+
+const setWelcomeGroup = (groupJid, key, enabled) => {
+    const data = loadWelcome();
+    if (!data[groupJid]) data[groupJid] = DEFAULT_WELCOME_GROUP();
+    data[groupJid][key] = enabled;
+    saveWelcome(data);
+};
+
+const getCpuSnapshot = () => os.cpus().reduce((snapshot, cpu) => {
+    const times = cpu.times || {};
+    snapshot.idle += times.idle || 0;
+    snapshot.total += Object.values(times).reduce((total, value) => total + value, 0);
+    return snapshot;
+}, { idle: 0, total: 0 });
+
+const getCpuUsage = (sampleMs = 500) => new Promise(resolve => {
+    const start = getCpuSnapshot();
+
+    setTimeout(() => {
+        const end = getCpuSnapshot();
+        const totalDelta = end.total - start.total;
+        const idleDelta  = end.idle - start.idle;
+
+        if (totalDelta <= 0) return resolve(null);
+
+        const usage = Math.max(0, Math.min(100, (1 - idleDelta / totalDelta) * 100));
+        resolve(usage);
+    }, sampleMs);
+});
+
+const getSysInfo = async (cpuUsagePromise = getCpuUsage()) => {
+    const totalBytes = os.totalmem();
+    const usedBytes  = totalBytes - os.freemem();
+    const uptimeSec  = process.uptime();
+    const hours      = Math.floor(uptimeSec / 3600);
+    const minutes    = Math.floor((uptimeSec % 3600) / 60);
+    const cpus       = os.cpus();
+    const cpuUsage   = await cpuUsagePromise;
+    const processMem = process.memoryUsage();
+
+    return {
+        ramUsed    : (usedBytes / 1024 ** 3).toFixed(2),
+        ramTotal   : (totalBytes / 1024 ** 3).toFixed(2),
+        ramPercent : ((usedBytes / totalBytes) * 100).toFixed(1),
+        cpu        : cpuUsage === null ? 'N/D' : `${cpuUsage.toFixed(1)}%`,
+        cpuModel   : cpus[0]?.model?.replace(/\s+/g, ' ').trim() || 'Sconosciuto',
+        cpuCores   : os.availableParallelism ? os.availableParallelism() : cpus.length,
+        processRam : (processMem.rss / 1024 ** 2).toFixed(1),
+        heapUsed   : (processMem.heapUsed / 1024 ** 2).toFixed(1),
+        uptime     : hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`,
+        platform   : `${os.type()} ${os.release()} (${os.arch()})`,
+        node       : process.version,
+    };
+};
+
+const normalizeJid = (jid) => {
+    if (typeof jid !== 'string') return '';
+    // Rimuove :number, @lid, @s.whatsapp.net, @g.us, @newsletter, ecc.
+    // Mantiene solo la parte numerica (il numero di telefono/ID)
+    return jid.trim().replace(/:\d+(?=@)/, '').replace(/@.+$/, '');
+};
+
+const sameJid = (first, second) => {
+    const normalizedFirst  = normalizeJid(first);
+    const normalizedSecond = normalizeJid(second);
+    return Boolean(normalizedFirst && normalizedSecond && normalizedFirst === normalizedSecond);
+};
+
+const isAdminParticipant = (participant, jid) => {
+    if (!['admin', 'superadmin'].includes(participant?.admin)) return false;
+    return [participant.id, participant.jid, participant.lid]
+        .filter(Boolean)
+        .some(participantJid => sameJid(participantJid, jid));
+};
+
+const getGroupAdminState = async (sock, groupJid, senderJids) => {
+    const metadata = await sock.groupMetadata(groupJid);
+    const participants = Array.isArray(metadata?.participants) ? metadata.participants : [];
+    const isAdmin = (jids) => jids
+        .filter(Boolean)
+        .some(jid => participants.some(participant => isAdminParticipant(participant, jid)));
+
+    return {
+        isBotAdmin    : isAdmin([sock.user?.id, sock.user?.lid]),
+        isSenderAdmin : isAdmin(senderJids),
+    };
+};
+
+const ADMIN_COMMANDS = new Set(['tagall', 'tag', 'chiudi', 'apri', 'ban', 'del', 'mute', 'unmute', 'warn', 'antilink', 'groupinfo', 'promote', 'demote', 'link']);
+
+const extractBody = (msg) => {
+    const m = msg.message;
+    if (!m) return '';
+    return (
+        m.conversation ||
+        m.extendedTextMessage?.text ||
+        m.imageMessage?.caption ||
+        m.videoMessage?.caption ||
+        m.buttonsResponseMessage?.selectedButtonId ||
+        m.listResponseMessage?.singleSelectReply?.selectedRowId ||
+        ''
+    );
+};
+
+const ARRAYS = {
+    schiaffi: [
+        "ha tirato uno schiaffo che ha fatto resettare il router. 💥",
+        "ha mollato un ceffone così forte che i tuoi antenati hanno chiesto scusa. 🖐️",
+        "ha colpito con la forza di mille nonne incazzate. 👵💢",
+        "ha stampato le 5 dita in faccia stile WiFi. 📶🤕",
+        "ha dato uno schiaffo che ha aggiornato il sistema direttamente a Windows 11. 💻",
+        "ha tirato una sberla che ha piegato lo spaziotempo. 🌌",
+        "ha colpito così forte che ora parli fluentemente l'aramaico antico. 📜",
+        "ha mollato un ceffone che ha fatto sbalzare il QI sotto zero. 📉",
+        "ha stampato un cinque in faccia. Letale. ✋",
+        "ha preso a schiaffi con la delicatezza di un tir in autostrada. 🚛",
+        "ha mollato una sberla che ha fatto scordare la password del telefono. 📱",
+        "ha colpito. Il dentista ringrazia per il nuovo yacht. 🦷🛥️",
+        "ha tirato uno schiaffo così fotonico da far fare il giro del mondo in 80ms. 🌍",
+        "ha mollato un ceffone. Ora il viso è un'opera d'arte cubista. 🎨",
+        "ha schiaffeggiato con l'ira funesta del pelide Achille. 🏛️",
+        "ha stampato una sberla così secca da sovrascrivere la partizione dei neuroni. 🧠⚡",
+        "ha dato un ceffone che ha fatto vibrare persino i pannelli acustici in MDF. 🪵🔊",
+        "ha mollato uno schiaffo facendo compiere tre orbite ellittiche al bersaglio. 🪐☄️",
+        "ha colpito così forte da de-sincronizzare l'account Spotify dai server centrali. 🎵❌",
+        "ha dato un ceffone fulmineo che ha superato il refresh rate da 360Hz. 🖥️💨",
+        "ha colpito con una sberla termica che ha mandato in thermal throttling i core CPU. 🌡️🔥",
+        "ha stampato un dritto in faccia facendo vedere le stelle senza telescopio. 🔭✨",
+        "ha rifilato un ceffone che ha flashato una GSI corrotta direttamente nel cervello. 📱💀",
+        "ha mollato una sberla così potente da ricompilare il kernel del sistema nervoso. ⚙️🧠",
+        "ha colpito con precisione da laser CNC lasciando un'impronta permanente. 🔦💢",
+    ],
+    insulti: [
+        "Sei il motivo per cui gli alieni passano oltre senza fermarsi. 👽",
+        "Sei utile quanto un semaforo in GTA. 🚦",
+        "Il tuo albero genealogico dev'essere un cerchio perfetto. 🌳",
+        "Hai l'utilità di un posacenere su una moto. 🏍️",
+        "Se l'ignoranza volasse, daresti da mangiare ai piccioni. 🐦",
+        "Il tuo QI è a temperatura ambiente. In gradi Celsius. 🌡️",
+        "Sei la prova vivente che l'evoluzione può fare marcia indietro. 🐒",
+        "Se avessi un euro per ogni tua idea intelligente, sarei in debito. 💸",
+        "Sei così denso che la luce si piega attorno a te. 🕳️",
+        "Anche un file .txt vuoto ha più contenuti di te. 📄",
+        "Sei come i termini e condizioni d'uso: nessuno ti legge. 📑",
+        "Hai due neuroni e stanno litigando per l'affidamento del terzo. 🧠",
+        "Sei l'errore 404 dell'intelligenza umana. 🚫",
+        "Sei così inutile che persino il correttore automatico ha smesso di provarci. ⌨️",
+        "La tua stabilità mentale è inferiore a quella di un server senza load balancer. 📉🛡️",
+        "Sei utile come una ventola da 120mm montata al contrario in un case sigillato. 🌬️❌",
+        "Hai lo stesso tempismo di chi sbaglia il bilanciamento su una montatura equatoriale. ⚖️🔭",
+        "Sei così noioso che persino un workflow automatizzato va in timeout pur di non eseguirti. ⏰🔄",
+        "Il tuo livello di interazione sociale è rimasto fermo alla modalità provvisoria di Windows 98. 💾📟",
+        "Sembri un cabinet acustico vuoto: fai solo un gran vuoto dentro. 🔈🕳️",
+        "Hai la stessa precisione balistica di un ferro da stiro lanciato a caso. 💣🎮",
+        "Il tuo QI potrebbe andare in underflow. 🔢❌",
+        "Sei denso come la colla siliconica usata per sigillare i sogni andati a male. 🪵💧",
+        "Valore di mercato: inferiore al costo di un byte su un floppy disk rotto. 💾📉",
+        "Sei il tipo di persona che restituisce NaN quando le si chiede il senso della vita. 🤖❓",
+    ],
+    fiori: [
+        "🌷 un tulipano rosa e un sorriso grande così",
+        "🌹 una rosa rossa con glitter immaginari",
+        "🌻 un girasole con energia da giornata perfetta",
+        "🌼 una margherita che sa di cose semplici e belle",
+        "🪻 un mazzetto lilla con vibes super delicate",
+        "🌸 dei fiori di ciliegio appena caduti dal cielo",
+        "💐 un bouquet colorato che mette subito il buonumore",
+        "🪷 un fiore di loto per una giornata tranquilla",
+        "🌺 un ibisco tropicale con un pizzico d'estate",
+        "🪻 una lavanda profumata per scacciare lo stress",
+        "🌹 una rosa bianca, elegante e piena di pace",
+        "🌷 un tulipano giallo carico di allegria",
+        "🌼 un mazzolino di campo raccolto con cura",
+        "🌸 una peonia soffice come una nuvola",
+        "🌻 un girasole che punta dritto alle cose belle",
+        "💐 un bouquet con un bigliettino: 'sei prezioso/a'",
+        "🌺 una camelia con una dose extra di dolcezza",
+        "🪷 un fiore portafortuna per oggi e per domani",
+        "🌼 una margherita con dentro un desiderio segreto",
+        "🌸 un rametto fiorito e un abbraccio virtuale",
+    ],
+    tette: [
+        "🍒 Taglia: Piattaforma d'atterraggio per zanzare. Voto: 2/10",
+        "🍒 Taglia: Due airbag esplosi. Voto: 8/10",
+        "🍒 Taglia: Meloni di stagione! Voto: 9/10",
+        "🍒 Taglia: Limoni acerbi. C'è potenziale. Voto: 5/10",
+        "🍒 Taglia: Palle da bowling. Voto: 10/10",
+        "🍒 Taglia: Uova al tegamino. Voto: 6/10",
+        "🍒 Taglia: Cuscini memory foam. Voto: 9/10",
+        "🍒 Taglia: Mandarini a dicembre. Voto: 7/10",
+        "🍒 Taglia: Palloncini gonfiati a elio. Voto: 8/10",
+        "🍒 Taglia: Zucche di Halloween. Voto: 8.5/10",
+        "🍒 Taglia: Ciliegine sulla torta. Voto: 7.5/10",
+        "🍒 Taglia: Due montagne russe. Voto: 10/10",
+        "🍒 Taglia: Piatto doccia. Voto: 0/10",
+        "🍒 Taglia: Cocco fresco da spiaggia. Voto: 8/10",
+        "🍒 Taglia: Due mappamondi. Voto: 10/10",
+        "🍒 Taglia: Geometria pulita degna di un layout AutoCAD. Voto: 8.5/10",
+        "🍒 Taglia: Due coni acustici ad alta efficienza. Voto: 9.5/10",
+        "🍒 Taglia: Due splendidi emisferi visibili a occhio nudo. Voto: 10/10",
+        "🍒 Taglia: Versione overclockata di serie. Scaldano l'ambiente. Voto: 9/10",
+        "🍒 Taglia: File corrotto durante la decompressione. Non pervenute. Voto: 3/10",
+        "🍒 Taglia: Più piatte di un desktop Linux senza icone. Voto: 4/10",
+        "🍒 Taglia: Due splendide curve raccordate a 90 gradi. Voto: 8/10",
+        "🍒 Taglia: Coppa da veri campioni. Voto: 10/10",
+        "🍒 Taglia: Due sfere ad alta risoluzione, degne di monitor 4K. Voto: 9/10",
+        "🍒 Taglia: Struttura solida ma manca stabilità portante. Voto: 6/10",
+    ],
+    bacia: [
+        "ha stampato un bacio appassionato a",
+        "ha dato un bacio a stampo sulle labbra di",
+        "ha rubato un bacio improvviso a",
+        "ha baciato dolcemente la fronte di",
+        "ha dato un bacio alla francese con le tonsille in omaggio a",
+        "ha baciato con foga da film hollywoodiano",
+        "ha dato un bacino timido a",
+        "ha lasciato un segno di rossetto sulla guancia di",
+        "ha inciampato ed è finito per baciare per sbaglio",
+        "ha dato un bacio romantico sotto la pioggia a",
+        "ha baciato con la precisione millimetrica di un laser a",
+        "ha stampato un bacio crittografato end-to-end sulla guancia di",
+        "ha baciato con lo stesso entusiasmo di chi vince al novantreesimo minuto a",
+        "ha dato un bacio così intenso da mandare in cortocircuito la rete locale insieme a",
+        "ha dato un bacio supersonico lasciando una scia termica nell'aria verso",
+    ],
+    scopa: [
+        "ha sfondato il letto a forza di saltare addosso a 🔞",
+        "ha fatto vedere le stelle a 🔞",
+        "ha cavalcato come un toro da rodeo 🔞🐂",
+        "ha sbattuto al muro e fatto danni veri a 🔞💥",
+        "ha consumato le lenzuola in una notte di fuoco con 🔞🔥",
+        "ha impostato una frequenza devastante mandando in blocco il sistema di 🔞⚡",
+        "ha eseguito un overclock estremo delle prestazioni con 🔞🔥",
+        "ha dominato completamente il terreno di gioco con 🔞⚽",
+        "ha bypassato le barriere di sicurezza di 🔞🛡️",
+        "ha completato la sequenza di attacco frontale perfetto lasciando esausto/a 🔞🏁",
+        "ha fatto fare ginnastica da camera intensiva a 🔞🤸",
+        "ha trivellato come cercasse petrolio nel corpo di 🔞🛢️",
+        "ha fatto fare i salti mortali sul materasso a 🔞🏎️",
+        "ha fatto gridare il nome di tutti i santi del calendario a 🔞📝",
+        "ha fatto sudare sette camicie (e perso tutti i vestiti) con 🔞💦",
+    ],
+    paccasulculo: [
+        "ha dato una pacca talmente allegra da far applaudire anche le sedie 🍑",
+        "ha lanciato una pacca con precisione da chirurgo del caos 🍑✨",
+        "ha dato una pacca così teatrale che è partita la sigla finale 🎬🍑",
+        "ha fatto una pacca veloce e poi ha fatto finta di niente 😇🍑",
+        "ha consegnato una pacca premium, con effetto sonoro incluso 🔊🍑",
+        "ha dato una pacca che ha migliorato il morale del gruppo del 3% 📈🍑",
+        "ha fatto una pacca da manuale, voto dieci e lode 🏆🍑",
+        "ha dato una pacca con l'eleganza di un ballerino/a di salsa 💃🍑",
+        "ha sferrato una pacca amichevole a velocità supersonica 💨🍑",
+        "ha dato una pacca e ha lasciato soltanto vibes positive ✨🍑",
+        "ha fatto una pacca così precisa da meritare il replay VAR 📺🍑",
+        "ha dato una pacca con la delicatezza di un peluche impazzito 🧸🍑",
+        "ha lasciato una pacca firmata, timbrata e approvata ✅🍑",
+        "ha dato una pacca da protagonista assoluto/a della scena 🌟🍑",
+        "ha fatto una pacca e il gruppo ha chiesto il bis 👏🍑",
+        "ha regalato una pacca di incoraggiamento, versione deluxe 🎁🍑",
+    ],
+    uccidi: [
+        "ha sconfitto in un duello immaginario",
+        "ha battuto in una sfida a Mario Kart contro",
+        "ha mandato KO a colpi di cuscino",
+        "ha vinto una battaglia di meme contro",
+        "ha superato in una gara di karaoke contro",
+        "ha messo in fuga con una combo da videogame",
+        "ha battuto in un duello di sguardi contro",
+        "ha conquistato il titolo di campione contro",
+        "ha fatto perdere una partita a sasso-carta-forbici a",
+        "ha dominato in una battaglia di GIF contro",
+        "ha chiuso il match con una mossa da cartone animato contro",
+        "ha vinto il torneo immaginario contro",
+        "ha ottenuto una vittoria epica contro",
+        "ha fatto ragequitare per finta",
+        "ha strappato una vittoria all'ultimo secondo contro",
+        "ha battuto con una mossa segreta da gamer contro",
+    ],
+    abbraccia: [
+        "ha stretto in un abbraccio da otto secondi esatti",
+        "ha dato un abbraccio così caldo da sciogliere il ghiaccio",
+        "ha avvolto in un abbraccio morbido come una coperta",
+        "ha regalato un abbraccio con bonus serenità",
+        "ha dato un abbraccio che ricarica la batteria sociale",
+        "ha abbracciato con tutta l'energia di un golden retriever",
+        "ha lasciato un abbraccio grande formato",
+        "ha dato un abbraccio con modalità coccola attivata",
+        "ha stretto forte forte in un abbraccio",
+        "ha mandato un abbraccio con consegna immediata",
+        "ha dato un abbraccio che merita una colonna sonora",
+        "ha avviato una terapia a base di abbracci con",
+        "ha regalato un abbraccio certificato anti-giornata-no",
+        "ha abbracciato con delicatezza e mille stelline",
+        "ha dato un abbraccio da copertina",
+        "ha condiviso un abbraccio pieno di bene",
+    ],
+    sposa: [
+        "ha tirato fuori un anello brillante e ha fatto la proposta a",
+        "ha chiesto di sposarlo/a sotto una pioggia di coriandoli a",
+        "ha organizzato una proposta con orchestra immaginaria per",
+        "ha aperto una scatolina misteriosa davanti a",
+        "ha preparato una proposta da film romantico per",
+        "ha promesso pizza, serie TV e felicità a",
+        "ha chiesto un sì con un cartello pieno di cuori a",
+        "ha fatto una proposta con effetti speciali per",
+        "ha lanciato il bouquet e ha guardato negli occhi",
+        "ha scritto una lettera dolcissima per",
+        "ha prenotato una luna di miele immaginaria con",
+        "ha chiesto di diventare compagni/e di avventure a",
+        "ha preparato una proposta con 100 emoji per",
+        "ha fatto partire la musica romantica e ha chiesto a",
+        "ha scelto il momento perfetto per fare la proposta a",
+        "ha promesso di dividere anche l'ultima fetta di pizza con",
+    ],
+    caos: [
+        "ha fatto salire troppo la temperatura delle vibes con",
+        "ha acceso una scena super movimentata insieme a",
+        "ha trasformato la chat in un romanzo rosa con",
+        "ha creato un caos romantico fuori scala con",
+        "ha fatto partire una telenovela piena di emoji con",
+        "ha lasciato tutti senza parole dopo una serata di vibes con",
+        "ha reso la situazione decisamente piccante con",
+        "ha trasformato il gruppo in una commedia romantica con",
+        "ha alzato il livello del drama romantico con",
+        "ha fatto saltare il termostato delle emozioni con",
+        "ha creato un momento da film vietato ai dettagli con",
+        "ha portato la chat in modalità 'troppo entusiasmo' con",
+        "ha acceso fuochi d'artificio immaginari con",
+        "ha fatto perdere la calma, ma con stile, a",
+        "ha reso tutto più caotico e romantico con",
+        "ha chiuso la scena con un sorriso malizioso verso",
+    ],
+    verita: [
+        "Qual è la figuraccia più grande che hai fatto in pubblico?",
+        "Hai mai rubato qualcosa, anche di piccolo?",
+        "Qual è l'ultima persona di questo gruppo che hai stalkerato sui social?",
+        "Qual è il tuo segreto più inconfessabile?",
+        "Hai mai finto di stare male per evitare un impegno?",
+        "Cosa pensi veramente del creatore di questo bot?",
+        "Qual è la bugia più grossa che hai mai raccontato a un tuo ex?",
+        "Hai mai spiato il telefono di qualcuno di nascosto?",
+        "Quale membro del gruppo butteresti giù dalla torre?",
+    ],
+    obbligo: [
+        "Manda l'ultima foto che hai salvato nella galleria, qualunque essa sia.",
+        "Scrivi 'Ti amo' al primo contatto della rubrica e manda lo screen.",
+        "Imposta come immagine di profilo una foto imbarazzante scelta dal gruppo per 24h.",
+        "Invia un audio in cui canti la sigla di Peppa Pig a squarciagola.",
+        "Scrivi a tua madre/tuo padre che hai deciso di scappare in Messico.",
+        "Manda lo screen della tua cronologia di ricerca (no modalità incognito!).",
+        "Registra un audio di 30 secondi in cui fai il verso di una gallina disperata.",
+        "Dichiara il tuo amore a caso a una persona in questo gruppo.",
+    ],
+    cazzo: [
+        "Piccolo ma funzionale, dicono",
+        "Sembra un microscopio, ma fa il suo dovere",
+        "È una lancia, attento a non ferire nessuno",
+        "Le dimensioni non contano, conta come lo usi",
+        "Purtroppo non è un'arma di distruzione di massa",
+    ],
+    rissa: [
+        "X ha colpito Y con una sedia di plastica!",
+        "Y ha schivato il colpo e ha dato un pugno a X!",
+        "X sta vincendo, ma Y ha tirato fuori un coltello!",
+        "Entrambi sono finiti a terra, un pareggio pietoso",
+        "Y ha vinto la rissa grazie a una mossa a sorpresa!",
+    ],
+    gossip: [
+        "[sender] è stato visto baciare un manichino al centro commerciale",
+        "[sender] ha comprato una bambola gonfiabile",
+        "[sender] scrive poesie d'amore ai muri",
+        "[sender] ha segretamente una cotta per un bot di Telegram",
+        "[sender] spia i vicini con il binocolo",
+    ],
+    palo: [
+        "Il palo è arrivato, e fa male pure a guardarlo",
+        "Ti ha rifiutato senza nemmeno guardarti negli occhi",
+        "Il tuo amore non è corrisposto, torna a giocare",
+        "Ti ha risposto 'sei solo un amico'",
+        "Meglio lasciar perdere, il palo è epico",
+    ],
+    scusa: [
+        "Ti chiedo perdono, ho esagerato",
+        "Scusami, non volevo, ero sotto effetto di troppi caffè",
+        "Perdonami, sono stato un idiota",
+        "Ti prego, accetta le mie scuse, non succederà più",
+        "Mi metto in ginocchio, perdonami!",
+    ],
+    drink: [
+        "Cocktail alla fragola con ombrellino",
+        "Birra gelata direttamente dal frigo",
+        "Un buon bicchiere di vino rosso locale",
+        "Coca cola ghiacciata",
+        "Whisky liscio, per dimenticare",
+    ],
+    oroscopo: [
+        "Oggi la fortuna è dalla tua parte, ma occhio al portafoglio",
+        "Ti aspetta un incontro inaspettato, probabilmente un corriere",
+        "La luna dice che dovresti riposare di più",
+        "Evita di litigare, specialmente con il bot",
+        "Un successo improvviso ti aspetta, forse una notifica",
+    ],
+    sclero: [
+        "BASTA! Non ne posso più di questo gruppo!",
+        "Vado a vivere in una grotta senza Wi-Fi, addio!",
+        "Mi licenzio, cercatevi un altro bot",
+        "Il mio processore sta bruciando per le vostre cavolate",
+        "A volte vorrei solo spegnermi e non riaccendermi più",
+    ],
+};
+
+const randomChoice = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+const COPY = {
+    slap: [
+        'ha tirato uno schiaffo che si è sentito anche nel gruppo vicino.',
+        'ha dato una sberla con una sicurezza assurda.',
+        'ha lasciato il segno. Letteralmente.',
+        'ha tirato uno schiaffo da scena finale di una serie.',
+        'ha dato un ceffone: silenzio totale per tre secondi.',
+    ],
+    insults: [
+        'Hai un talento raro: complicare anche le cose facili.',
+        'Non sei in ritardo, vivi proprio su un altro fuso orario.',
+        'Hai portato il caos, come sempre. Iconico però.',
+        'Sei la prova che si può parlare tanto e dire poco.',
+        'Oggi non ci sei proprio con la testa, ma va bene così.',
+    ],
+    curves: [
+        'Voto del bot: 8/10. Oggi si vola.',
+        'Voto del bot: 6/10. Onesto, ci sta.',
+        'Voto del bot: 10/10. Main character energy.',
+        'Voto del bot: 7/10. Niente male dai.',
+        'Voto del bot: 9/10. Qui c’è qualità.',
+    ],
+    kiss: [
+        'ha dato un bacio a',
+        'ha rubato un bacino a',
+        'ha baciato con molta sicurezza',
+        'ha lasciato un bacio sulla guancia di',
+        'ha fatto partire un momento super romantico con',
+    ],
+    adults: [
+        'ha avuto una serata decisamente movimentata con',
+        'ha acceso un po’ troppo le vibes con',
+        'ha creato caos romantico insieme a',
+        'ha fatto perdere la calma a',
+    ],
+};
+
+const formatMoney = (value) => `${Math.max(0, Math.floor(Number(value) || 0))}€`;
+
+// ── TRIS — RENDER BOARD ──────────────────────────────────────────────────
+//  Converte l'array board in una stringa con emoji.
+//  Le celle vuote mostrano il numero (1️⃣-9️⃣), quelle occupate ❌ o ⭕.
+const renderTrisBoard = (board) => {
+    const symbols = ['1️⃣','2️⃣','3️⃣','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣'];
+    const cell = (i) => board[i] || symbols[i];
+    return `${cell(0)} ${cell(1)} ${cell(2)}\n${cell(3)} ${cell(4)} ${cell(5)}\n${cell(6)} ${cell(7)} ${cell(8)}`;
+};
+
+// ── TRIS — CHECK WINNER ──────────────────────────────────────────────────
+//  Pattern vincenti: righe, colonne, diagonali.
+//  Restituisce { winner: jid|null, draw: bool }
+const checkTrisWinner = (board, players, turn) => {
+    const winPatterns = [
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6],
+    ];
+    for (const p of winPatterns) {
+        if (board[p[0]] && board[p[0]] === board[p[1]] && board[p[1]] === board[p[2]]) {
+            return { winner: players[turn % 2 === 0 ? 1 : 0], draw: false };
+        }
+    }
+    if (turn >= 9) return { winner: null, draw: true };
+    return { winner: null, draw: false };
+};
+
+// ── TRIS — HELPER: manda/aggiorna messaggio board con mentions corretti ─────
+//  Se gameMessageKey esiste fa EDIT, altrimenti invia nuovo e salva la key.
+const sendOrEditTrisBoard = async (sock, chatId, game, text, extraMentions = []) => {
+    const allMentions = [...new Set([...game.players, ...extraMentions])];
+    const payload = { text, mentions: allMentions };
+    if (game.gameMessageKey) {
+        payload.edit = game.gameMessageKey;
+        await sock.sendMessage(chatId, payload);
+    } else {
+        const sent = await sock.sendMessage(chatId, payload);
+        game.gameMessageKey = sent.key;
+        saveDB();
+    }
+};
+
+const getContextInfo = (message = {}) => {
+    // Cerca contextInfo in tutti i tipi di messaggio possibili.
+    // Il viewOnce reply puo' arrivare come qualsiasi tipo wrapper.
+    for (const val of Object.values(message)) {
+        if (val && typeof val === 'object' && val.contextInfo) {
+            return val.contextInfo;
+        }
+    }
+    return {};
+};
+
+const getQuotedKey = (chatId, contextInfo) => ({
+    remoteJid: chatId,
+    fromMe   : false,
+    id       : contextInfo.stanzaId,
+    participant: contextInfo.participant,
+});
+
+// ── HTTP HEALTH CHECK SERVER (per Render / UptimeRobot) ────────────────
+const http = require('http');
+const server = http.createServer((req, res) => {
+    if (req.url === '/') {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('OK - Bot WhatsApp attivo');
+    } else {
+        res.writeHead(404);
+        res.end();
+    }
+});
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`[HTTP] Health check server in ascolto sulla porta ${PORT}`);
+});
+
+async function startBot() {
+    console.log('[BOT] Avvio in corso...');
+    const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys');
+
+    const sock = makeWASocket({
+        auth            : state,
+        printQRInTerminal: true,
+        logger          : pino({ level: 'silent' }),
+    });
+
+    sock.ev.on('creds.update', saveCreds);
+
+    sock.ev.on('connection.update', (update) => {
+        const { connection, lastDisconnect, qr } = update;
+
+        if (qr) qrcode.generate(qr, { small: true });
+
+        if (connection === 'close') {
+            const statusCode = lastDisconnect?.error?.output?.statusCode;
+            if (statusCode === DisconnectReason.loggedOut) {
+                console.log('[BOT] Sessione scaduta. Elimina la cartella auth_info_baileys e riavvia.');
+            } else {
+                startBot();
+            }
+        } else if (connection === 'open') {
+            botStartTime = Math.floor(Date.now() / 1000);
+            console.log('[BOT] Connesso e operativo.');
+        }
+    });
+
+    sock.ev.on('messages.upsert', async (m) => {
+        const msg = m.messages[0];
+        if (!msg?.message || msg.key.fromMe) return;
+
+        // Ignora messaggi vecchi (inviati prima che il bot si connettesse)
+        const msgTimestamp = msg.messageTimestamp || 0;
+        if (msgTimestamp && msgTimestamp < botStartTime) {
+            console.log(`[FILTER] Ignorato messaggio vecchio di ${Math.floor((botStartTime - msgTimestamp) / 60)} min fa`);
+            return;
+        }
+
+        const from     = msg.key.remoteJid;
+        const isGroup  = from?.endsWith('@g.us') === true;
+        const sender   = isGroup ? msg.key.participant : from;
+        const pushName = msg.pushName || 'Utente';
+        
+
+        const isOwner  = sameJid(sender, ownerNumber);
+
+        if (isGroup && sender) {
+            try {
+                const userData = getUser(sender, from);
+                userData.msgCount = (userData.msgCount || 0) + 1;
+                saveDB();
+            } catch (_) {}
+        }
+
+        const body = extractBody(msg);
+
+        // ── MUTE: elimina i messaggi degli utenti silenziati ──────────────
+        try {
+            const senderData = getUser(sender, from);
+            if (senderData.isMuted && isGroup) {
+                try { await sock.sendMessage(from, { delete: msg.key }); } catch (_) {}
+                return;
+            }
+        } catch (_) {}
+
+        // ── ANTILINK MIDDLEWARE ───────────────────────────────────────────
+        //
+        //  Logica:
+        //  1. Funziona solo nei gruppi (non in chat private).
+        //  2. Legge la config del gruppo corrente (remoteJid = `from`).
+        //  3. Per ogni piattaforma con filtro attivo, verifica se il testo
+        //     del messaggio contiene un link corrispondente.
+        //  4. Se il mittente NON è admin, elimina il messaggio silenziosamente.
+        //  5. Gli admin sono esentati: possono postare link liberamente.
+        //  6. L'Owner è sempre esente.
+        //
+        if (isGroup && body) {
+            try {
+                const antilinkConfig = getAntilinkGroup(from);
+                // Determina se almeno un filtro è attivo per questo gruppo
+                const hasActiveFilter = Object.values(antilinkConfig).some(Boolean);
+
+                if (hasActiveFilter) {
+                    // Scorri le piattaforme nell'ordine definito in ANTILINK_PLATFORMS
+                    for (const [platform, regex] of Object.entries(ANTILINK_PLATFORMS)) {
+                        if (!antilinkConfig[platform]) continue; // filtro disattivo: salta
+                        if (!regex.test(body)) continue;         // nessun match: salta
+
+                        // Trovato un link vietato — controlla se il mittente è esente
+                        const isOwnerCheck = sameJid(sender, ownerNumber);
+                        if (isOwnerCheck) break; // owner: lascia passare tutto
+
+                        // Recupera lo stato admin del mittente per questo gruppo
+                        let senderIsAdmin = false;
+                        try {
+                            const { isSenderAdmin: adminCheck } = await getGroupAdminState(
+                                sock, from, [sender]
+                            );
+                            senderIsAdmin = adminCheck;
+                        } catch (_) {}
+
+                        if (senderIsAdmin) break; // admin: esente
+
+                        // Utente normale con link vietato → elimina silenziosamente
+                        try {
+                            await sock.sendMessage(from, { delete: msg.key });
+                            // Avviso opzionale nel gruppo (commentalo se lo vuoi silenzioso)
+                            await sock.sendMessage(from, {
+                                text: `🚫 *Link rimosso*\n\n@${sender.split('@')[0]}, i link *${platform}* non sono permessi in questo gruppo.`,
+                                mentions: [sender],
+                            });
+                        } catch (delErr) {
+                            // Se il bot non è admin, non può eliminare — logga senza crashare
+                            console.warn(`[ANTILINK] Impossibile eliminare il msg di ${sender}: ${delErr.message}`);
+                        }
+                        break; // Un solo avviso anche se matchano più piattaforme
+                    }
+                }
+            } catch (antilinkErr) {
+                // Errore nel middleware antilink: non bloccare il flusso principale
+                console.error('[ANTILINK] Errore middleware:', antilinkErr.message);
+            }
+        }
+
+        // ── TRIS: gestione mosse via REPLY (numero 1-9 rispondendo al messaggio board) ──
+        //  Supporta anche il comando diretto .tris <num> (gestito nel command switch)
+        if (isGroup && /^[1-9]$/.test(body) && !body.startsWith('.')) {
+            try {
+                const game = db[from]?.tris;
+                if (!game || !game.active) return;
+                if (!Array.isArray(game.players) || game.players.length !== 2) return;
+                if (typeof game.turn !== 'number' || game.turn < 0) return;
+
+                // Verifica che il messaggio sia una risposta alla board del bot
+                const replyContext = getContextInfo(msg.message);
+                console.log('[tris reply] stanzaId:', replyContext.stanzaId, 'gameMessageKey:', game.gameMessageKey);
+                if (replyContext.stanzaId !== game.gameMessageKey?.id) return;
+
+                // Verifica turno
+                if (!sameJid(game.players[game.turn % 2], sender)) {
+                    return void await sock.sendMessage(from, {
+                        text: '⏳ Non è il tuo turno!',
+                    }, { quoted: msg });
+                }
+
+                // Applica mossa
+                const idx = parseInt(body) - 1;
+                if (game.board[idx] !== '') {
+                    return void await sock.sendMessage(from, {
+                        text: '❌ Cella già occupata! Scegline un\'altra.',
+                    }, { quoted: msg });
+                }
+
+                const mark = game.turn % 2 === 0 ? '❌' : '⭕';
+                game.board[idx] = mark;
+                game.turn++;
+                saveDB();
+
+                // Verifica esito
+                const { winner, draw } = checkTrisWinner(game.board, game.players, game.turn);
+
+                let resultText;
+                if (winner) {
+                    game.active = false;
+                    saveDB();
+                    resultText = `🎮 *TRIS — PARTITA TERMINATA!*\n\n${renderTrisBoard(game.board)}\n\n🏆 @${winner.split('@')[0]} ha vinto! 🎉\n\n_Grazie per aver giocato!_`;
+                } else if (draw) {
+                    game.active = false;
+                    saveDB();
+                    resultText = `🎮 *TRIS — PARTITA TERMINATA!*\n\n${renderTrisBoard(game.board)}\n\n🤝 *Pareggio!* Nessuno vince.\n\n_Grazie per aver giocato!_`;
+                } else {
+                    const nextPlayer = game.players[game.turn % 2];
+                    resultText = `🎮 *TRIS*\n\n${renderTrisBoard(game.board)}\n\n🔄 Turno di @${nextPlayer.split('@')[0]}\n_Rispondi con 1-9 o usa .tris <num>_`;
+                }
+
+                // EDIT con mentions preservati
+                await sendOrEditTrisBoard(sock, from, game, resultText);
+
+            } catch (e) {
+                console.error('[tris move]', e.message);
+            }
+        }
+
+        if (!body.startsWith('.')) return;
+
+        const args      = body.slice(1).trim().split(/\s+/);
+        const command   = (args.shift() || '').toLowerCase();
+        if (!command) return;
+        const textArgs  = args.join(' ');
+        const contextInfo = getContextInfo(msg.message);
+        const mentioned = contextInfo.mentionedJid || [];
+        const isReply   = !!contextInfo.quotedMessage;
+        if (!isBotActive && !isOwner && command !== 'accendi') return;
+        const targetJid = mentioned[0] || contextInfo.participant || null;
+
+        const reply = async (text) => {
+            try { await sock.sendMessage(from, { text }, { quoted: msg }); } 
+            catch (e) { console.error(`[reply] Errore invio: ${e.message}`); }
+        };
+
+        let isBotAdmin    = false;
+        let isSenderAdmin = false;
+
+        if (isGroup && ADMIN_COMMANDS.has(command)) {
+            try {
+                ({ isBotAdmin, isSenderAdmin } = await getGroupAdminState(sock, from, [sender]));
+            } catch (error) {
+                console.error('[admin] Impossibile leggere i permessi del gruppo:', error.message);
+                return reply("╭────〔 ⚠️ ERRORE 〕────╮\n│ Non riesco a verificare i permessi\n│ del gruppo. Riprova tra poco.\n╰──────────────────────╯");
+            }
+        }
+
+        try {
+            const commandModule = commands.get(command);
+            if (!commandModule) return;
+
+            await commandModule.run(sock, msg, args, {
+                command, textArgs, from, sender, pushName, isGroup, isOwner, mentioned,
+                targetJid, isReply, contextInfo, isBotAdmin, isSenderAdmin, reply,
+                setBotActive: (value) => { isBotActive = Boolean(value); },
+                services: {
+                    AI_API_KEY, AI_API_URL, AI_MODEL, MAX_FILE_SIZE,
+                    ANTILINK_PLATFORMS, ARRAYS, COPY, axios, checkTrisWinner,
+                    crypto, db, downloadContentFromMessage, downloadMediaMessage,
+                    execFileAsync, ffmpeg, formatMoney, fs, getAntilinkGroup,
+                    getContextInfo, getCpuUsage, getQuotedKey, getSysInfo, getUser, os, path,
+                    projectDir: __dirname, randomChoice, randomInt, renderTrisBoard,
+                    sameJid, saveDB, setAntilinkPlatform, sharp, webpmux,
+                    getWelcomeGroup, setWelcomeGroup,
+                },
+            });
+        } catch (error) {
+            console.error('[handler] Errore critico:', error.message);
+            await sock.sendMessage(from, { 
+                text: `╭────〔 ⚠️ ERRORE DI SISTEMA 〕────╮\n│ Si è verificato un problema:\n│ _${error.message}_\n╰──────────────────────────────────╯`
+            }, { quoted: msg });
+        }
+    });
+
+    // ── GROUP PARTICIPANTS UPDATE (WELCOME / GOODBYE) ──────────────────────
+    sock.ev.on('group-participants.update', async (update) => {
+        console.log('[group-participants.update] Evento ricevuto:', JSON.stringify(update, null, 2));
+        try {
+            const { id: groupJid, participants, action } = update;
+            if (!groupJid || !participants || !action) {
+                console.log('[group-participants.update] Dati mancanti, skip');
+                return;
+            }
+
+            // Ignora promote/demote — non servono welcome/goodbye
+            if (action !== 'add' && action !== 'remove') {
+                console.log('[group-participants.update] Azione non gestita:', action);
+                return;
+            }
+
+            const meta = await sock.groupMetadata(groupJid);
+            if (!meta) {
+                console.log('[group-participants.update] Metadata gruppo non trovate');
+                return;
+            }
+            const groupName = meta.subject || 'Questo gruppo';
+            const groupDesc = (meta.desc || '').trim().slice(0, 200) || 'Nessuna descrizione disponibile';
+            const participantsList = Array.isArray(meta.participants) ? meta.participants : [];
+            const admins = participantsList.filter(p => ['admin', 'superadmin'].includes(p.admin));
+
+            for (const p of participants) {
+                // p è un oggetto: { id: '...@lid', phoneNumber: '...@s.whatsapp.net', admin: ... }
+                const jid = p?.id || p?.phoneNumber;
+                if (!jid) {
+                    console.log('[group-participants.update] JID mancante nel participant:', p);
+                    continue;
+                }
+                const short = jid.split('@')[0];
+
+                // Controlla impostazioni welcome/goodbye per questo gruppo
+                const welcomeConfig = getWelcomeGroup(groupJid);
+
+                if (action === 'add') {
+                    if (!welcomeConfig.welcome) continue; // Welcome disattivato per questo gruppo
+                    
+                    const adminTags = admins.length > 0
+                        ? admins.map(a => `│  👑 @${(a.id || a.jid || '').split('@')[0]}`).join('\n')
+                        : '│  _(nessun admin)_';
+
+                    const welcomeText =
+
+`╭━━━━━ 🎉 *BENVENUTO* 🎉 ━━━━━╮
+┃
+┃ 👤 *Ciao* @${short}!
+┃ Ti diamo il benvenuto in:
+┃ *${groupName}*
+┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃ 📝 *INFO GRUPPO:*
+┃ _${groupDesc}_
+┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃ 👑 *AMMINISTRATORI:*
+┃ ${adminTags}
+┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃ 📌 *PER INIZIARE:*
+┃ Digita *".menu"* per vedere
+┃ tutti i comandi disponibili! 🚀
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+
+                    let pfpUrl;
+                    try { pfpUrl = await sock.profilePictureUrl(groupJid, 'image'); } catch (_) { pfpUrl = null; }
+
+                    const adminMentions = admins.map(a => a.id || a.jid).filter(Boolean);
+
+                    if (pfpUrl) {
+                        await sock.sendMessage(groupJid, {
+                            image: { url: pfpUrl },
+                            caption: welcomeText,
+                            mentions: [jid, ...adminMentions],
+                        });
+                    } else {
+                        await sock.sendMessage(groupJid, {
+                            text: welcomeText,
+                            mentions: [jid, ...adminMentions],
+                        });
+                    }
+
+                } else if (action === 'remove') {
+                    if (!welcomeConfig.goodbye) continue; // Goodbye disattivato per questo gruppo
+                    
+                    const goodbyeText =
+`╭━━━━━ 👋 *ARRIVEDERCI* 👋 ━━━━━╮
+┃
+┃ 👤 @${short} 
+┃ ha appena lasciato il gruppo.
+┃
+┃ 📉 *${groupName}* perde un membro,
+┃ ma i ricordi restano. 🫂
+┃
+┃ _Chissà se tornerà..._ 🌈
+┃
+╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+
+                    await sock.sendMessage(groupJid, {
+                        text: goodbyeText,
+                        mentions: [jid],
+                    });
+                }
+            }
+        } catch (err) {
+            console.error('[group-participants.update] Errore:', err.message);
+        }
+    });
+}
+
+startBot();

@@ -1,0 +1,8 @@
+node_modules/
+auth_info_baileys/
+temp/
+youtube-cookies.txt
+*.cookies.txt
+fileping.txt
+tmp.jpg
+auth_*.json
