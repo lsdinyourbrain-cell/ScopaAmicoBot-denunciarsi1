@@ -15,162 +15,80 @@ module.exports = {
 
             let antilinkSection;
             if (isGroup) {
-                const alCfg         = getAntilinkGroup(from);
-                const platformNames = Object.keys(ANTILINK_PLATFORMS);
-                const alLines = platformNames.map(p => {
-                    const dot   = alCfg[p] ? '🟢' : '⚫';
-                    const stato = alCfg[p] ? 'ON' : 'OFF';
-                    return `│   ${dot}  ${p.padEnd(11)}→  *${stato}*`;
-                }).join('\n');
-
+                const alCfg = getAntilinkGroup(from);
+                const alLines = Object.keys(ANTILINK_PLATFORMS).map(p =>
+                    `│   ${alCfg[p] ? '🟢' : '⚫'} ${p.padEnd(11)}→ *${alCfg[p] ? 'ON' : 'OFF'}*`
+                ).join('\n');
                 antilinkSection =
 `│
 ╞══════════════════════════════════════╡
-│  🔗  *ANTILINK*  _(solo Owner)_
+│  🔗 𝐀𝐧𝐭𝐢𝐥𝐢𝐧𝐤 _(Owner)_
 │
 ${alLines}
 │
-│  📌  *.antilink [piattaforma] [on/off]*
-│  📌  *.antilink tutti on/off*`;
+│  📌 .antilink [piattaforma] [on/off]
+│  📌 .antilink tutti on/off`;
             } else {
                 antilinkSection =
 `│
 ╞══════════════════════════════════════╡
-│  🔗  *ANTILINK*
-│  ℹ️  Disponibile solo nei gruppi.`;
+│  🔗 *ANTILINK*
+│  ℹ️ Solo nei gruppi.`;
             }
 
-            const now      = new Date();
-            const timeStr  = now.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
-            const dateStr  = now.toLocaleDateString('it-IT', { weekday: 'long', day: '2-digit', month: 'long' });
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+            const dateStr = now.toLocaleDateString('it-IT', { weekday: 'short', day: '2-digit', month: 'short' });
 
-            let menuTxt = 
-`╭━━━ 🤖 *ScopaAmico BOT* • v7.0 ━━━
+            let menuTxt =
+`╭━━━ 𝐒𝐜𝐨𝐩𝐚𝐀𝐦𝐢𝐜𝐨 𝐁𝐎𝐓 v8.0 ━━━
 ┃
-┃ 👋 Ciao, *${pushName.slice(0, 18)}*!
-┃ 🕐 ${timeStr} • ${dateStr}
+┃ 👋 *${pushName.slice(0, 16)}* • 🕐${timeStr} ${dateStr}
 ┃
-┣━━ 💝 *FAMIGLIA*
-┃ ├ .famiglia » Albero
-┃ ├ .famiglia sposa @ » Matrimonio
-┃ ├ .famiglia adotta @ » Adozione
-┃ ├ .famiglia divorzia » Divorzio
-┃ ├ .famiglia caccia @ » Diseredazione
-┃ ╰ .famiglia abbandona
-┃
-┣━━ 🪙 *ECONOMIA & GIOCHI*
-┃ ├ .cassaforte » 💰 Saldo
-┃ ├ .scava » ⛏️ Guadagna
-┃ ├ .casino [€] » 🃏 Blackjack
-┃ ├ .top » 🏆 Attivi
-┃ ├ .ricchi » 💎 Classifica
-┃ ├ .dadi [€] » 🎲 Lancia
-┃ ├ .slot » 🎰 Machine
-┃ ├ .roulette [€] » 🎡 Rischia
-┃ ╰ .sasso / .carta / .forbici
-┃
-┣━━ 🎲 *SOCIAL & FUN*
-┃ ├ .ship @ » 💞 Match
-┃ ├ .gay [@] » 🌈 Metro
-┃ ├ .simpatometro [@] » 😊 Score
-┃ ├ .percentuale [x] » 📊 Stima
-┃ ├ .scelta A o B » 🎯 Decide
-┃ ├ .fiore [@] » 🌷 Regalo
-┃ ├ .personaggio » 🎭 RPG
-┃ ├ .anime » ✨ Profilo
-┃ ├ .assemblapc » 🖥️ Build
-┃ ├ .verita » 🗣️ Gioco
-┃ ├ .obbligo » 🎯 Gioco
-┃ ├ .oroscopo » 🔮 Segno
-┃ ╰ .maranza 💪 » Flessioni
-┃
-┣━━ 🔥 *INTERAZIONI*
-┃ ├ .schiaffo @ » 💥 Slap
-┃ ├ .bacia @ » 💋 Bacio
-┃ ├ .abbraccia @ » 🫂 Abbraccio
-┃ ├ .sposa @ » 💍 Proposta
-┃ ├ .paccasulculo @ » 🍑 Pacca
-┃ ├ .uccidi @ » 🎮 KO
-┃ ├ .insulta @ » 🤬 Insulto
-┃ ├ .incinta @ » 🍼 Test
-┃ ├ .scopa @ » 🔞 Azione
-┃ ├ .sborra/ditalino/sega @
-┃ ├ .tette » 🍒 Valuta
-┃ ├ .meme » 🎵 Audio
-┃ ├ .rissa @ » 🥊 Rissa
-┃ ├ .cazzo @ » 🍆 Misura
-┃ ├ .sclero » 💢 Sbrocca
-┃ ├ .drink @ » 🍹 Offri
-┃ ├ .scusa @ » 🙏 Chiedi scusa
-┃ ├ .palo @ » 🥀 Secco
-┃ ╰ .gossip @ » 🗣️ Gossip
-┃
-┣━━ 🛠️ *UTILITY*
-┃ ├ .ping » ⚡ Status
-┃ ├ .groupinfo » 🏷️ Gruppo
-┃ ├ .weather [città] » 🌦️ Meteo
-┃ ├ .lyrics [brano] » 🎤 Testo
-┃ ├ .sticker / .s » 🖼️ Sticker
-┃ ├ .vv » 👁️ Rivela
-┃ ├ .hack @ » 💻 Scenetta
-┃ ├ .clona [testo] » 🪞 Inverti
-┃ ├ .tts [testo] » 🔊 Text-to-Speech
-┃ ├ .chipmunk » 🐿️ Voce scoiattolo
-┃ ╰ .rubato » 🖼️ Sticker a immagine
-┃
-┣━━ 🎤 *EFFETTI AUDIO*
-┃ ├ .deep » 🔊 Voce profonda
-┃ ├ .reverse » ⏪ Audio inverso
-┃ ├ .echo » 🏔️ Riverbero
-┃ ├ .robot » 🤖 Vocoder
-┃ ├ .drunk » 🍻 Ubriaco
-┃ ├ .bass » 🔊 Bass boost
-┃ ├ .nightcore » ⚡ Speed up
-┃ ╰ .8d » 🎧 Audio 8D
-┃
-┣━━ 📥 *MEDIA & DOWNLOAD*
-┃ ├ .ig [url] » 📸 Instagram
-┃ ├ .wasted @ » 💀 Filtro GTA
-┃ ├ .pokedex @ » 📋 Scheda Pokémon
-┃ ╰ .clown @ » 🤡 Filtro pagliaccio
-┃
-┣━━ 🤖 *INTELLIGENZA ARTIFICIALE*
-┃ ╰ .ai [domanda] » 🧠 Chat AI
-┃
-┣━━ 🎮 *GIOCHI DI GRUPPO*
-┃ ╰ .tris @ » ❌⭕ Tic-Tac-Toe
-┃
-┣━━ ⚙️ *ADMIN* _(solo admin)_
-┃ ├ .tag [msg] » 🏷️ Hidetag
-┃ ├ .tagall » 📢 Menziona
-┃ ├ .chiudi / .apri » 🔒 Chat lock
-┃ ├ .ban @ » 🔨 Espelli
-┃ ├ .link » 🔗 Invito gruppo
-┃ ├ .del » 🗑️ Elimina
-┃ ├ .mute / .unmute @ » 🔇 Silenzia
-┃ ├ .warn @ » ⚠️ Avviso ×3
-┃ ├ .promote @ » 👑 Promuovi admin
-┃ ╰ .demote @ » ⬇️ Degrada admin
+┣━━ 💝 𝐅𝐚𝐦𝐢𝐠𝐥𝐢𝐚
+┃ ╰ .famiglia [sposa/adotta/caccia/divorzia/abbandona]
+┣━━ 🪙 𝐄𝐜𝐨𝐧𝐨𝐦𝐢𝐚 💰
+┃ ├ .cassaforte .scava .casino€ .dadi€ .slot .roulette€
+┃ ├ .sasso .top🏆 .ricchi💎
+┣━━ 🎲 𝐒𝐨𝐜𝐢𝐚𝐥
+┃ ├ .ship .gay .simpatometro .percentuale .scelta .fiore
+┃ ├ .personaggio .anime .assemblapc .verita .obbligo .oroscopo .maranza
+┣━━ 🔥 𝐈𝐧𝐭𝐞𝐫𝐚𝐳𝐢𝐨𝐧𝐢
+┃ ├ .schiaffo .bacia .abbraccia .sposa .pacca .uccidi .insulta
+┃ ├ .incinta .scopa .sborra/ditalino/sega .tette .meme .rissa
+┃ ├ .cazzo .sclero .drink .scusa .palo .gossip
+┣━━ 🛠️ 𝐔𝐭𝐢𝐥𝐢𝐭𝐲
+┃ ├ .ping .groupinfo .weather .sticker .s .vv .hack
+┃ ├ .clona .tts .chipmunk .rubato .lyrics
+┣━━ 🎤 𝐀𝐮𝐝𝐢𝐨 🔊
+┃ ├ .deep .reverse .echo .robot .drunk .bass
+┃ ├ .nightcore .8d
+┣━━ 📥 𝐌𝐞𝐝𝐢𝐚
+┃ ├ .ig .wasted .pokedex .clown
+┣━━ 🤖 𝐀𝐈 🧠
+┃ ╰ .ai [domanda]
+┣━━ 🎮 𝐆𝐢𝐨𝐜𝐡𝐢 🎯
+┃ ╰ .tris @
+┣━━ ⚙️ 𝐀𝐝𝐦𝐢𝐧
+┃ ├ .tag .tagall .chiudi/apri .ban .link .del
+┃ ├ .mute/unmute .warn .promote .demote
 ${antilinkSection}`;
 
             if (isOwner) {
                 menuTxt +=
 `┃
-┣━━ 👨‍💻 *OWNER* _(riservato)_
-┃ ├ .spegni » 🛑 Sospendi
-┃ ├ .accendi » ✅ Riattiva
-┃ ├ .riavvia » 🔄 Restart
-┃ ├ .welcome on/off » 🎉 Benvenuto
-┃ ╰ .goodbye on/off » 👋 Arrivederci`;
+┣━━ 👨‍💻 𝐎𝐰𝐧𝐞𝐫
+┃ ├ .spegni .accendi .riavvia
+┃ ├ .welcome on/off .goodbye on/off`;
             }
 
-            menuTxt += 
+            menuTxt +=
 `┃
-╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
 
             if (pfpUrl) {
-                await sock.sendMessage(from, 
-                    { image: { url: pfpUrl }, caption: menuTxt }, 
+                await sock.sendMessage(from,
+                    { image: { url: pfpUrl }, caption: menuTxt },
                     { quoted: msg }
                 );
             } else {
