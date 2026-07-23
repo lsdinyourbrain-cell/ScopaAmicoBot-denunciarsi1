@@ -16,24 +16,21 @@ module.exports = {
             let antilinkSection;
             if (isGroup) {
                 const alCfg = getAntilinkGroup(from);
-                const alLines = Object.keys(ANTILINK_PLATFORMS).map(p =>
-                    `│   ${alCfg[p] ? '🟢' : '⚫'} ${p.padEnd(11)}→ *${alCfg[p] ? 'ON' : 'OFF'}*`
-                ).join('\n');
+                const keys = Object.keys(ANTILINK_PLATFORMS);
+                const mid = Math.ceil(keys.length / 2);
+                const alLine1 = keys.slice(0, mid).map(p => `${alCfg[p] ? '🟢' : '⚫'} ${p}`).join('  ');
+                const alLine2 = keys.slice(mid).map(p => `${alCfg[p] ? '🟢' : '⚫'} ${p}`).join('  ');
                 antilinkSection =
-`│
-╞══════════════════════════════════════╡
-│  🔗 𝐀𝐧𝐭𝐢𝐥𝐢𝐧𝐤 _(Owner)_
-│
-${alLines}
-│
-│  📌 .antilink [piattaforma] [on/off]
-│  📌 .antilink tutti on/off`;
+`┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🔗 𝔄𝔫𝔱𝔦𝔩𝔦𝔫𝔨  (Owner)
+┃  ├ ${alLine1}
+┃  ├ ${alLine2}
+┃  ╰ .antilink [piattaforma] [on/off]`;
             } else {
                 antilinkSection =
-`│
-╞══════════════════════════════════════╡
-│  🔗 *ANTILINK*
-│  ℹ️ Solo nei gruppi.`;
+`┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🔗 *ANTILINK*
+┃  ╰ Solo nei gruppi.`;
             }
 
             const now = new Date();
@@ -41,53 +38,62 @@ ${alLines}
             const dateStr = now.toLocaleDateString('it-IT', { weekday: 'short', day: '2-digit', month: 'short' });
 
             let menuTxt =
-`╭━━━ 𝐒𝐜𝐨𝐩𝐚𝐀𝐦𝐢𝐜𝐨 𝐁𝐎𝐓 v8.0 ━━━
-┃
-┃ 👋 *${pushName.slice(0, 16)}* • 🕐${timeStr} ${dateStr}
-┃
-┣━━ 💝 𝐅𝐚𝐦𝐢𝐠𝐥𝐢𝐚
-┃ ╰ .famiglia [sposa/adotta/caccia/divorzia/abbandona]
-┣━━ 🪙 𝐄𝐜𝐨𝐧𝐨𝐦𝐢𝐚
-┃ ├ .cassaforte💰 .scava⛏ .casino€ .dadi€ .slot🎰
-┃ ├ .roulette€ .sasso .top🏆 .ricchi💎
-┣━━ 🎲 𝐒𝐨𝐜𝐢𝐚𝐥
-┃ ├ .ship .gay .simpatometro .percentuale .scelta .fiore
-┃ ├ .personaggio .anime .assemblapc .verita .obbligo
-┃ ├ .oroscopo .maranza💪
-┣━━ 🔥 𝐈𝐧𝐭𝐞𝐫𝐚𝐳𝐢𝐨𝐧𝐢
-┃ ├ .schiaffo .bacia .abbraccia .sposa .paccasulculo
-┃ ├ .uccidi .insulta .scopa .sborra .ditalino .sega
-┃ ├ .incinta .tette🍒 .meme🎵 .rissa🥊 .cazzo🍆
-┃ ├ .sclero💢 .drink🍹 .scusa .palo🥀 .gossip🗣
-┣━━ 🛠️ 𝐔𝐭𝐢𝐥𝐢𝐭𝐲
-┃ ├ .ping⚡ .groupinfo🏷 .weather🌦 .sticker/.s🖼
-┃ ├ .vv👁 .hack💻 .clona🪞 .tts🔊 .chipmunk🐿
-┃ ├ .rubato🖼 .lyrics🎤
-┣━━ 🎤 𝐀𝐮𝐝𝐢𝐨 🔊
-┃ ├ .deep .reverse .echo .robot .drunk .bass
-┃ ├ .nightcore .8d
-┣━━ 📥 𝐌𝐞𝐝𝐢𝐚
-┃ ├ .ig📸 .wasted💀 .pokedex📋 .clown🤡
-┣━━ 🤖 𝐀𝐈 🧠
-┃ ╰ .ai [domanda]
-┣━━ 🎮 𝐆𝐢𝐨𝐜𝐡𝐢 🎯
-┃ ╰ .tris @
-┣━━ ⚙️ 𝐀𝐝𝐦𝐢𝐧
-┃ ├ .tag .tagall .chiudi/apri .ban .link .del
-┃ ├ .mute/unmute .warn .promote/demote
+`╭━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  𝓢𝓬𝓸𝓹𝓪𝓐𝓶𝓲𝓬𝓸 𝓑𝓞𝓣  v8.0
+┃  👋 *${pushName.slice(0, 16)}*  •  🕐${timeStr} ${dateStr}
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  💝 𝔉𝔞𝔪𝔦𝔤𝔩𝔦𝔞
+┃  ╰ .famiglia [sposa/adotta/caccia/divorzia/abbandona]
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🪙 𝔼𝕔𝕠𝕟𝕠𝕞𝕚𝕒
+┃  ├ .cassaforte💰 .scava⛏ .casino€ .dadi€ .slot🎰
+┃  ├ .roulette€ .sasso .top🏆 .ricchi💎
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🎲 𝕊𝕠𝕔𝕚𝕒𝕝
+┃  ├ .ship .gay .simpatometro .percentuale .scelta .fiore
+┃  ├ .personaggio .anime .assemblapc .verita .obbligo
+┃  ├ .oroscopo .maranza💪
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🔥 𝕀𝕟𝕥𝕖𝕣𝕒𝕫𝕚𝕠𝕟𝕚
+┃  ├ .schiaffo .bacia .abbraccia .sposa .paccasulculo
+┃  ├ .uccidi .insulta .scopa .sborra .ditalino .sega
+┃  ├ .incinta .tette🍒 .meme🎵 .rissa🥊 .cazzo🍆
+┃  ├ .sclero💢 .drink🍹 .scusa .palo🥀 .gossip🗣
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🛠️ 𝕌𝕥𝕚𝕝𝕚𝕥𝕪
+┃  ├ .ping⚡ .groupinfo🏷 .weather🌦 .sticker/.s🖼
+┃  ├ .vv👁 .hack💻 .clona🪞 .tts🔊 .chipmunk🐿
+┃  ├ .rubato🖼 .lyrics🎤
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🎤 𝔄𝔲𝔡𝔦𝔬
+┃  ├ .deep .reverse .echo .robot .drunk .bass
+┃  ├ .nightcore .8d
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  📥 𝕄𝕖𝕕𝕚𝕒
+┃  ├ .ig📸 .wasted💀 .pokedex📋 .clown🤡
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🤖 𝔸𝕀
+┃  ╰ .ai [domanda] 🧠
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🎮 𝔾𝕚𝕠𝕔𝕙𝕚
+┃  ╰ .tris @ 🎯
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  ⚙️ 𝔄𝔡𝔪𝔦𝔫
+┃  ├ .tag .tagall .chiudi/apri .ban .link .del
+┃  ├ .mute/unmute .warn .promote/demote
 ${antilinkSection}`;
 
             if (isOwner) {
                 menuTxt +=
-`┃
-┣━━ 🛡 𝐎𝐰𝐧𝐞𝐫
-┃ ├ .spegni .accendi .riavvia
-┃ ├ .welcome on/off .goodbye on/off`;
+`┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+┃  🛡 𝔒𝔴𝔫𝔢𝔯
+┃  ├ .spegni .accendi .riavvia
+┃  ╰ .welcome on/off .goodbye on/off`;
             }
 
             menuTxt +=
 `┃
-╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
 
             if (pfpUrl) {
                 await sock.sendMessage(from,
