@@ -46,110 +46,110 @@ module.exports = {
 ┃  ╰ .famiglia [sposa/adotta/caccia/divorzia/abbandona]
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🪙 𝔼𝕔𝕠𝕟𝕠𝕞𝕚𝕒
-┃  ├ .cassaforte » 💰 saldo
-┃  ├ .scava » ⛏️ miniera
-┃  ├ .casino [€] » 🃏 blackjack
-┃  ├ .dadi [€] » 🎲 tira
-┃  ├ .slot » 🎰 machine
-┃  ├ .roulette [€] » 🎡 azzarda
+┃  ├ .cassaforte
+┃  ├ .scava
+┃  ├ .casino [€]
+┃  ├ .dadi [€]
+┃  ├ .slot
+┃  ├ .roulette [€]
 ┃  ├ .sasso / .carta / .forbici
-┃  ├ .top » 🏆 classifica
-┃  ╰ .ricchi » 💎 graduatoria
+┃  ├ .top
+┃  ╰ .ricchi
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🎲 𝕊𝕠𝕔𝕚𝕒𝕝
-┃  ├ .ship » 💞 match
-┃  ├ .gay » 🌈 metro
-┃  ├ .simpatometro » 😊 score
-┃  ├ .percentuale » 📊 stima
-┃  ├ .scelta » 🎯 decide
-┃  ├ .fiore » 🌷 regalo
-┃  ├ .personaggio » 🎭 rpg
-┃  ├ .anime » ✨ profilo
-┃  ├ .assemblapc » 🖥️ build
-┃  ├ .verita » 🗣️ gioco
-┃  ├ .obbligo » 🎯 gioco
-┃  ├ .oroscopo » 🔮 segno
-┃  ╰ .maranza » 💪 flessioni
+┃  ├ .ship
+┃  ├ .gay
+┃  ├ .simpatometro
+┃  ├ .percentuale
+┃  ├ .scelta
+┃  ├ .fiore
+┃  ├ .personaggio
+┃  ├ .anime
+┃  ├ .assemblapc
+┃  ├ .verita
+┃  ├ .obbligo
+┃  ├ .oroscopo
+┃  ╰ .maranza
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🔥 𝕀𝕟𝕥𝕖𝕣𝕒𝕫𝕚𝕠𝕟𝕚
-┃  ├ .schiaffo » 💥 slap
-┃  ├ .bacia » 💋 bacio
-┃  ├ .abbraccia » 🫂 abbraccio
-┃  ├ .sposa » 💍 proposta
-┃  ├ .paccasulculo » 🍑 pacca
-┃  ├ .uccidi » 🎮 ko
-┃  ├ .insulta » 🤬 insulto
-┃  ├ .scopa » 🔞 azione
-┃  ├ .sborra » 💦 sborra
-┃  ├ .ditalino » 👆 ditalino
-┃  ├ .sega » ✊ sega
-┃  ├ .incinta » 🍼 test
-┃  ├ .tette » 🍒 valuta
-┃  ├ .meme » 🎵 audio
-┃  ├ .rissa » 🥊 rissa
-┃  ├ .cazzo » 🍆 misura
-┃  ├ .sclero » 💢 sbrocca
-┃  ├ .drink » 🍹 offri
-┃  ├ .scusa » 🙏 scusa
-┃  ├ .palo » 🥀 secco
-┃  ╰ .gossip » 🗣️ gossip
+┃  ├ .schiaffo
+┃  ├ .bacia
+┃  ├ .abbraccia
+┃  ├ .sposa
+┃  ├ .paccasulculo
+┃  ├ .uccidi
+┃  ├ .insulta
+┃  ├ .scopa
+┃  ├ .sborra
+┃  ├ .ditalino
+┃  ├ .sega
+┃  ├ .incinta
+┃  ├ .tette
+┃  ├ .meme
+┃  ├ .rissa
+┃  ├ .cazzo
+┃  ├ .sclero
+┃  ├ .drink
+┃  ├ .scusa
+┃  ├ .palo
+┃  ╰ .gossip
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🛠️ 𝕌𝕥𝕚𝕝𝕚𝕥𝕪
-┃  ├ .ping » ⚡ status
-┃  ├ .groupinfo » 🏷️ gruppo
-┃  ├ .weather [città] » 🌦️ meteo
-┃  ├ .sticker / .s » 🖼️ sticker
-┃  ├ .vv » 👁️ rivela
-┃  ├ .hack » 💻 scenetta
-┃  ├ .clona [testo] » 🪞 inverti
-┃  ├ .tts [testo] » 🔊 tts
-┃  ├ .chipmunk » 🐿️ scoiattolo
-┃  ├ .rubato » 🖼️ img→sticker
-┃  ╰ .lyrics [brano] » 🎤 testo
+┃  ├ .ping
+┃  ├ .groupinfo
+┃  ├ .weather [città]
+┃  ├ .sticker / .s
+┃  ├ .vv
+┃  ├ .hack
+┃  ├ .clona
+┃  ├ .tts [testo]
+┃  ├ .chipmunk
+┃  ├ .rubato
+┃  ╰ .lyrics
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🎤 𝔄𝔲𝔡𝔦𝔬
-┃  ├ .deep » 🔊 profonda
-┃  ├ .reverse » ⏪ inverso
-┃  ├ .echo » 🏔️ riverbero
-┃  ├ .robot » 🤖 vocoder
-┃  ├ .drunk » 🍻 ubriaco
-┃  ├ .bass » 🔊 bass boost
-┃  ├ .nightcore » ⚡ speed up
-┃  ╰ .8d » 🎧 8d audio
+┃  ├ .deep
+┃  ├ .reverse
+┃  ├ .echo
+┃  ├ .robot
+┃  ├ .drunk
+┃  ├ .bass
+┃  ├ .nightcore
+┃  ╰ .8d
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  📥 𝕄𝕖𝕕𝕚𝕒
-┃  ├ .ig [url] » 📸 instagram
-┃  ├ .wasted » 💀 filtro gta
-┃  ├ .pokedex » 📋 scheda
-┃  ╰ .clown » 🤡 pagliaccio
+┃  ├ .ig
+┃  ├ .wasted
+┃  ├ .pokedex
+┃  ╰ .clown
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🤖 𝔸𝕀
-┃  ╰ .ai [domanda] » 🧠 chat ai
+┃  ╰ .ai [domanda] 🧠
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🎮 𝔾𝕚𝕠𝕔𝕙𝕚
-┃  ╰ .tris @ » ❌⭕ tic tac toe
+┃  ╰ .tris @ 🎯
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  ⚙️ 𝔄𝔡𝔪𝔦𝔫
-┃  ├ .tag [msg] » 🏷️ hidetag
-┃  ├ .tagall » 📢 menziona
-┃  ├ .chiudi / .apri » 🔒 chat lock
-┃  ├ .ban @ » 🔨 espelli
-┃  ├ .link » 🔗 invito
-┃  ├ .del » 🗑️ elimina
-┃  ├ .mute / .unmute @ » 🔇 silenzia
-┃  ├ .warn @ » ⚠️ avviso ×3
-┃  ╰ .promote / .demote @ » 👑 admin
+┃  ├ .tag
+┃  ├ .tagall
+┃  ├ .chiudi / .apri
+┃  ├ .ban
+┃  ├ .link
+┃  ├ .del
+┃  ├ .mute / .unmute
+┃  ├ .warn
+┃  ├ .promote / .demote
 ${antilinkSection}`;
 
             if (isOwner) {
                 menuTxt +=
 `┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃  🛡 𝔒𝔴𝔫𝔢𝔯
-┃  ├ .spegni » 🛑 sospendi
-┃  ├ .accendi » ✅ riattiva
-┃  ├ .riavvia » 🔄 restart
-┃  ├ .welcome on/off » 🎉 benvenuto
-┃  ╰ .goodbye on/off » 👋 arrivederci`;
+┃  ├ .spegni
+┃  ├ .accendi
+┃  ├ .riavvia
+┃  ├ .welcome on/off
+┃  ╰ .goodbye on/off`;
             }
 
             menuTxt +=
