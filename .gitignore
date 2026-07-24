@@ -1,0 +1,15 @@
+node_modules/
+auth_info_baileys/
+temp/
+youtube-cookies.txt
+*.cookies.txt
+database.json
+auth_*.json
+export-auth.js
+upload-auth.js
+send-auth.ps1
+legacy/
+tmp.jpg
+fileping.txt
+antilink.json
+welcome.json

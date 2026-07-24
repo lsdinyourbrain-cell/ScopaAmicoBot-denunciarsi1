@@ -1,0 +1,23 @@
+'use strict';
+
+module.exports = {
+    name: 'colpisci',
+    aliases: [],
+    description: "Prova a incassare la taglia attiva.",
+
+    async run(sock, msg, args, context) {
+        const { command, textArgs, from, sender, isGroup, isOwner, mentioned, targetJid, isReply, contextInfo, isBotAdmin, isSenderAdmin, reply, setBotActive, services } = context;
+        const { AI_API_KEY, AI_API_URL, AI_MODEL, MAX_FILE_SIZE, ARRAYS, COPY, axios, checkTrisWinner, crypto, db, downloadContentFromMessage, downloadMediaMessage, execFileAsync, ffmpeg, formatMoney, fs, getAntilinkGroup, getCpuUsage, getQuotedKey, getSysInfo, getUser, os, path, projectDir, randomChoice, randomInt, renderTrisBoard, sameJid, saveDB, setAntilinkPlatform, sharp, webpmux, ANTILINK_PLATFORMS, sleep, claimBounty, getBounty, removeBounty, bestemmiometro } = services;
+
+
+            const result = claimBounty(from, sender);
+            if (result === null) return reply("Nessuna taglia attiva in questo gruppo 🤷");
+            if (result === 0) {
+                return reply("💥 Hai provato a colpire ma il bersaglio si è schivato! Per stavolta niente taglia 😂");
+            }
+            const userData = getUser(sender, from);
+            userData.money += result;
+            saveDB();
+            await reply(`🎯 *TAGLIASSA!*\n\nHai centrato il bersaglio e intascato *${result}€*! 💰\nNuovo saldo: *${userData.money}€*`);
+    },
+};
